@@ -266,6 +266,50 @@ var/list/admin_verbs_dev = list(
 */
 
 //New Ranks
+var/list/admin_verbs_inquisitor = list(
+	/client/proc/toggleadminhelpsound,	/*toggles whether we hear a sound when adminhelps/PMs are used*/
+	/client/proc/deadmin_self,			/*destroys our own admin datum so we can play as a regular player*/
+	/client/proc/hide_verbs,			/*hides all our adminverbs*/
+	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
+	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
+	/client/proc/check_antagonists,		/*shows all antags*/
+	/client/proc/cmd_mentor_check_new_players,
+//	/client/proc/deadchat,				/*toggles deadchat on/off*/
+	/client/proc/cmd_vip_say,
+	/client/proc/player_panel_new,
+	/client/proc/admin_ghost,
+	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
+	/client/proc/cmd_admin_pm_panel,
+	/client/proc/cmd_admin_check_contents,
+	/client/proc/jumptocoord,
+	/client/proc/Jump,
+	/client/proc/jumptokey,				/*allows us to jump to the location of a mob with a certain ckey*/
+	/client/proc/jumptomob,				/*allows us to jump to a specific mob*/
+	/client/proc/jumptoturf,
+	/client/proc/check_antagonists,
+	/datum/admins/proc/PlayerNotes,
+	/client/proc/cmd_mod_say,
+	/datum/admins/proc/show_player_info,
+	/datum/admins/proc/show_skills,
+    /client/proc/cmd_dev_say,
+    /client/proc/dsay,
+    /client/proc/cleartox,
+	/client/proc/clean,
+	/client/proc/check_ai_laws,
+	/client/proc/dsay,
+	/client/proc/investigate_show,
+	/client/proc/FRules,
+	/client/proc/freeze,
+	/client/proc/freezemecha,
+	/client/proc/air_report,
+	/datum/admins/proc/show_player_panel,
+	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
+	/datum/admins/proc/adrev,
+	/datum/admins/proc/adspawn,
+	/datum/admins/proc/adjump,
+	/client/proc/getserverlog
+)
+
 var/list/admin_verbs_dev = list(
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game.*/
 	/client/proc/cmd_admin_pm_panel,	/*admin-pm list*/
@@ -462,7 +506,8 @@ var/list/admin_verbs_headadmin = list(
 var/list/admin_verbs_gamemaster = list(
 	/client/proc/play_local_sound,
 	/client/proc/play_sound,
-	/client/proc/edit_admin_permissions
+	/client/proc/edit_admin_permissions,
+	/client/proc/stealth
 )
 
 /*
@@ -582,6 +627,7 @@ var/list/admin_verbs_hideable = list(
 		if(holder.rights & R_FUN)			verbs += admin_verbs_admin3
 		if(holder.rights & R_DEBUG)			verbs += admin_verbs_headadmin
 		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_gamemaster
+		if(holder.rights & R_INQUISITOR)	verbs += admin_verbs_inquisitor
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -610,6 +656,7 @@ var/list/admin_verbs_hideable = list(
 		admin_verbs_admin3,
 		admin_verbs_headadmin,
 		admin_verbs_gamemaster,
+		admin_verbs_inquisitor,
 
 		/*Debug verbs added by "show debug verbs"*/
 		/client/proc/Cell,

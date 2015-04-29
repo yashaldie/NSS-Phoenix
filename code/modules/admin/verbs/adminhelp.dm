@@ -121,7 +121,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 			if(!(R_ADMIN & X.holder.rights))
 				if(X.is_afk())
 					admin_number_afk++
-		if(R_ADMIN & X.holder.rights) // just admins here please
+		if(R_ADMIN & X.holder.rights || R_INQUISITOR & X.holder.rights) // just admins here please
 			adminholders += X
 			if(X.is_afk())
 				admin_number_afk++
@@ -161,10 +161,11 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 							if(X.prefs.toggles & SOUND_ADMINHELP)
 								X << 'sound/effects/adminhelp.ogg'
 						X << dev_msg
-
-
-
-
+			if(adminholders.len)
+				for(var/client/X in adminholders) // Admins of course get everything in their helps
+					if(X.prefs.toggles & SOUND_ADMINHELP)
+						X << 'sound/effects/adminhelp.ogg'
+					X << msg
 
 	/*for(var/client/X in admins)
 		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)

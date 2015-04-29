@@ -332,6 +332,7 @@ proc/tg_list2text(list/list, glue=",")
 
 // New Ranks
 /proc/rights2text(rights,seperator="")
+	if(rights & R_INQUISITOR)	. += "[seperator]+INQUISITOR"
 	if(rights & R_DEV)			. += "[seperator]+DEV"
 	if(rights & R_MENTOR)		. += "[seperator]+MENTOR"
 	if(rights & R_MOD)			. += "[seperator]+MOD"

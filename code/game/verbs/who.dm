@@ -49,14 +49,16 @@
 	var/msg = ""
 	var/modmsg = ""
 	var/devmsg = ""
+	var/inqmsg = ""
 	var/num_mods_online = 0
 	var/num_admins_online = 0
 	var/num_devs_online = 0
+	var/num_inquisitor_online = 0
 	if(holder)
 		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights || (!R_MENTOR & C.holder.rights && !R_DEV & C.holder.rights))	//Used to determine who shows up in admin rows
+			if(R_ADMIN & C.holder.rights || (!R_MENTOR & C.holder.rights && !R_DEV & C.holder.rights && !R_INQUISITOR & C.holder.rights))	//Used to determine who shows up in admin rows
 
-				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MENTOR & holder.rights))		//Mentors can't see stealthmins
+				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_INQUISITOR & holder.rights))		//Mentors can't see stealthmins
 					continue
 
 				msg += "\t[C] is a [C.holder.rank]"
@@ -76,7 +78,7 @@
 				msg += "\n"
 
 				num_admins_online++
-			else if(R_MENTOR & C.holder.rights || !(R_DEV & C.holder.rights))
+			else if(R_MENTOR & C.holder.rights)
 				modmsg += "\t[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))
@@ -90,7 +92,7 @@
 					modmsg += " (AFK)"
 				modmsg += "\n"
 				num_mods_online++
-			else if(R_DEV & C.holder.rights || !(R_MENTOR & C.holder.rights))
+			else if(R_DEV & C.holder.rights)
 				devmsg += "\t[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))
@@ -104,6 +106,19 @@
 					devmsg += " (AFK)"
 				devmsg += "\n"
 				num_devs_online++
+			else if(R_INQUISITOR & C.holder.rights)
+				inqmsg += "\t[C] is a [C.holder.rank]"
+				if(isobserver(C.mob))
+					inqmsg += " - Observing"
+				else if(istype(C.mob,/mob/new_player))
+					inqmsg += " - Lobby"
+				else
+					inqmsg += " - Playing"
+				if(C.is_afk())
+					inqmsg += " (AFK)"
+				inqmsg += "\n"
+				num_inquisitor_online++
+
 	else
 		for(var/client/C in admins)
 			if(R_ADMIN & C.holder.rights || (!R_MENTOR & C.holder.rights && !R_DEV & C.holder.rights))
@@ -116,7 +131,10 @@
 			else if (R_DEV & C.holder.rights || !(R_MENTOR & C.holder.rights))
 				devmsg += "\t[C] is a [C.holder.rank]\n"
 				num_devs_online++
-	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg + "\n<b> Current Moderators & Mentors([num_mods_online]):</b>\n" + modmsg + "\n<b> Current Developers([num_devs_online]):</b>\n" + devmsg
+			else if (R_INQUISITOR & C.holder.rights)
+				inqmsg += "\t[C] is a [C.holder.rank]\n"
+				num_inquisitor_online++
+	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg + "\n<b> Current Moderators & Mentors([num_mods_online]):</b>\n" + modmsg + "\n<b> Current Developers([num_devs_online]):</b>\n" + devmsg + "\n<b> Current Inquisitors([num_inquisitor_online]):</b>\n" + inqmsg
 	src << msg
 
 

@@ -639,7 +639,7 @@ var/list/liftable_structures = list(\
 #define R_REJUVINATE	512
 #define R_VAREDIT		1024
 #define R_SOUNDS		2048
-#define R_SPAWN			4096
+#define R_INQUISITOR	4096           //#define R_SPAWN			4096
 #define R_MOD			8192
 #define R_MENTOR		16384
 #define R_DEV			32768
