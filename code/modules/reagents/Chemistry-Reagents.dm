@@ -2919,6 +2919,18 @@ datum
 				M.make_jittery(5)
 				if(adj_temp > 0)
 					holder.remove_reagent("frostoil", 10*REAGENTS_METABOLISM)
+				if(!data) data = 1
+				switch(data)
+					if(1 to 30)
+						//nothing
+					if(31 to 40)
+						if (prob(1))
+							M.give_heart_attack()
+					if(41 to INFINITY)
+						if (prob(1.5))
+							M.give_heart_attack()
+
+
 
 				holder.remove_reagent(src.id, 0.1)
 
