@@ -1842,7 +1842,6 @@ datum
 			description = "A strong neurotoxin that puts the subject into a death-like state."
 			reagent_state = SOLID
 			color = "#669900" // rgb: 102, 153, 0
-			toxpwr = 0.5
 
 			on_mob_life(var/mob/living/carbon/M as mob)
 				if(!M) M = holder.my_atom
