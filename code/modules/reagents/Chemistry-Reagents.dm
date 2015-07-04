@@ -2032,6 +2032,7 @@ datum
 			color = "#FFFFFF" // rgb: 255,255,255
 			toxpwr = 2
 			overdose = 20
+			scannable = 0
 
 			on_mob_life(var/mob/living/carbon/M as mob)
 				if(ishuman(M))
@@ -2041,6 +2042,7 @@ datum
 							H.losebreath = max(10, M.losebreath-10)
 						H.adjustOxyLoss(2)
 						H.Weaken(10)
+						H.give_heart_attack()
 				..()
 				return
 
