@@ -95,7 +95,7 @@ datum
 			on_update(var/atom/A)
 				return
 
-			overdose_process(var/mob/living/M as mob) //credit to paradise
+			on_overdose(var/mob/living/M as mob)
 				return
 
 
