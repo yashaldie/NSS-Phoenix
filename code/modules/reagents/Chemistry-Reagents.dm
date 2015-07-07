@@ -1605,7 +1605,7 @@ datum
 			description = "Intensely coloured powder obtained by grinding crayons."
 			reagent_state = LIQUID
 			color = "#888888"
-			overdose = 5
+			overdose = 1
 
 			red
 				name = "Red crayon dust"
