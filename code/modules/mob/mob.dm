@@ -114,11 +114,6 @@
 	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
 	return
 
-/mob/proc/give_heart_attack(amount)
-	for(var/mob/living/M as mob)
-		heart_attack = amount
-	return
-	
 /mob/proc/restrained()
 	return
 
