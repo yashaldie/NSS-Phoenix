@@ -77,15 +77,15 @@
 		reagents.add_reagent("toxin", 60)
 		update_icon()
 
-/obj/item/weapon/reagent_containers/glass/bottle/lectrazine
-	name = "lectrazine"
-	desc = "A small bottle of lectrazine. An effective cardiac stimulant."
+/obj/item/weapon/reagent_containers/glass/bottle/adrenaline
+	name = "Adrenaline"
+	desc = "A small bottle of Adrenaline. An effective cardiac stimulant."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
 
 	New()
 		..()
-		reagents.add_reagent("lectrazine", 60)
+		reagents.add_reagent("adrenaline", 60)
 		update_icon()
 
 /obj/item/weapon/reagent_containers/glass/bottle/cyanide
