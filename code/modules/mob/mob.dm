@@ -115,7 +115,8 @@
 	return
 
 /mob/proc/give_heart_attack(amount)
-	heart_attack = amount
+	for(var/mob/living/M as mob)
+		M.heart_attack = amount
 	return
 	
 /mob/proc/restrained()
