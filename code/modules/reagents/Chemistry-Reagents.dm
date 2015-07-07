@@ -1240,6 +1240,7 @@ datum
 				M.dizziness = 0
 				M.drowsyness = 0
 				M.stuttering = 0
+				M.heart_attack = 0
 				M.confused = 0
 				M.sleeping = 0
 				M.jitteriness = 0
