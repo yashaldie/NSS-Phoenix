@@ -95,6 +95,8 @@ datum
 			on_update(var/atom/A)
 				return
 
+			overdose_process(var/mob/living/M as mob)
+				return
 
 
 		blood
