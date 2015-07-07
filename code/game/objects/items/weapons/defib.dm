@@ -1,4 +1,4 @@
-//all code from Paradise Station. This is heavily WIP at the moment
+//Mostly code from Paradise Station. This is heavily WIP at the moment
 
 //backpack item
 
