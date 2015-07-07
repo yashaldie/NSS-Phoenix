@@ -1427,8 +1427,12 @@ datum
 				if(!M) M = holder.my_atom
 				M.SetParalysis(0)
 				M.SetWeakened(0)
-				M.give_heart_attack(0)
 				M.adjustToxLoss(rand(3))
+
+				var/mob/living/carbon/human/H = M
+				if(!H.heart_attack)
+					H.heart_attack = 1
+					
 				..()
 				return
 
@@ -2043,7 +2047,7 @@ datum
 							H.losebreath = max(10, M.losebreath-10)
 						H.adjustOxyLoss(2)
 						H.Weaken(10)
-						H.give_heart_attack(1)
+						H.heart_attack = 1
 				..()
 				return
 
@@ -2927,10 +2931,14 @@ datum
 						//nothing
 					if(31 to 40)
 						if (prob(1))
-							M.give_heart_attack(1)
+							var/mob/living/carbon/human/H = M
+							if(!H.heart_attack)
+								H.heart_attack = 1
 					if(41 to INFINITY)
 						if (prob(1.5))
-							M.give_heart_attack(1)
+							var/mob/living/carbon/human/H = M
+							if(!H.heart_attack)
+								H.heart_attack = 1
 
 
 
