@@ -1428,11 +1428,6 @@ datum
 				M.SetParalysis(0)
 				M.SetWeakened(0)
 				M.adjustToxLoss(rand(3))
-
-				var/mob/living/carbon/human/H = M
-				if(H.heart_attack)
-					H.heart_attack = 0
-					
 				..()
 				return
 
