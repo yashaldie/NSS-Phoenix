@@ -95,8 +95,8 @@ datum
 			on_update(var/atom/A)
 				return
 
-			on_overdose(var/mob/living/M as mob)
-				return
+//			on_overdose(var/mob/living/M as mob)
+//				return
 
 
 		blood
