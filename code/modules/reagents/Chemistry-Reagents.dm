@@ -1416,10 +1416,10 @@ datum
 				..()
 				return
 
-		lectrazine
-			name = "Lectrazine"
-			id = "lectrazine"
-			description = "Lectrazine is a drug used to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
+		adrenaline
+			name = "Adrenaline"
+			id = "adrenaline"
+			description = "Adrenaline is a hormonal drug used to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
 
