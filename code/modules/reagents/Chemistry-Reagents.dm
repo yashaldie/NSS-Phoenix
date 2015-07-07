@@ -1430,8 +1430,8 @@ datum
 				M.adjustToxLoss(rand(3))
 
 				var/mob/living/carbon/human/H = M
-				if(!H.heart_attack)
-					H.heart_attack = 1
+				if(H.heart_attack)
+					H.heart_attack = 0
 					
 				..()
 				return
