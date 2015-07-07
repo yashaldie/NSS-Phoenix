@@ -285,6 +285,13 @@ datum
 			required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1,)
 			result_amount = 3
 
+		lectrazine
+			name = "Lectrazine"
+			id = "lectrazine"
+			result = "lectrazine"
+			required_reagents = list("sugar" = 1, "inaprovaline" = 1, "dexalin" = 1,)
+			result_amount = 3
+
 		ryetalyn
 			name = "Ryetalyn"
 			id = "ryetalyn"
