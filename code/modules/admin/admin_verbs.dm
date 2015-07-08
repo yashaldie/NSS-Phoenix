@@ -1053,6 +1053,9 @@ var/list/admin_verbs_hideable = list(
 	set category = "Special Verbs"
 	if(src.mob)
 		togglebuildmode(src.mob)
+		message_admins("\blue [key_name_admin(usr)] has toggled buildmode for themselves.")
+		log_admin("[key_name(usr)] has toggled buildmode for themselves.")
+		log_admin_single("[key_name(usr)] has toggled buildmode for themselves.")
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/object_talk(var/msg as text) // -- TLE

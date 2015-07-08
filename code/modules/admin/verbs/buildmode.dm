@@ -241,13 +241,21 @@
 					T.ChangeTurf(holder.buildmode.objholder)
 				else
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
+					message_admins("\blue [key_name(usr)] has spawned [A] at ([A.x],[A.y],[A.z])")
+					log_admin("[key_name(usr)] has spawned [A] at ([A.x],[A.y],[A.z])")
+					log_admin_single("[key_name(usr)] has spawned [A] at ([A.x],[A.y],[A.z])")
 					A.set_dir(holder.builddir.dir)
 			else if(pa.Find("right"))
-				if(isobj(object)) del(object)
+				if(isobj(object))
+					message_admins("\blue [key_name_admin(usr)] has deleted [object] at ([object.x],[object.y],[object.z])")
+					log_admin("[key_name(usr)] has deleted [object] at ([object.x],[object.y],[object.z])")
+					log_admin_single("[key_name(usr)] has deleted [object] at ([object.x],[object.y],[object.z])")
+					del(object)
 
 		if(3)
 			if(pa.Find("left")) //I cant believe this shit actually compiles.
 				if(object.vars.Find(holder.buildmode.varholder))
+					message_admins("\blue [key_name_admin(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					log_admin_single("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = holder.buildmode.valueholder
@@ -255,6 +263,7 @@
 					usr << "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"
 			if(pa.Find("right"))
 				if(object.vars.Find(holder.buildmode.varholder))
+					message_admins("\blue [key_name_admin(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					log_admin_single("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
