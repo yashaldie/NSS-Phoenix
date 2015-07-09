@@ -1709,7 +1709,7 @@ datum
 			description = "A powerful chemical substance which is lethal at certain dosages."
 			reagent_state = LIQUID
 			color = "#7401DF" // rgb: 121, 35, 0
-			toxpwr = 2.5
+			toxpwr = 2
 			
 		toxin/cyalodin
 			name = "Cyalodin"
