@@ -71,6 +71,13 @@ datum
 			required_reagents = list("chloralhydrate" = 1, "sugar" = 4)
 			result_amount = 5
 
+		chloraxine
+			name = "Chloraxine"
+			id = "chloraxine"
+			result = "chloraxine"
+			required_reagents = list("chloralhydrate" = 1, "mercury" = 1, "nitrogen" = 1)
+			result_amount = 2
+
 		sterilizine
 			name = "Sterilizine"
 			id = "sterilizine"
