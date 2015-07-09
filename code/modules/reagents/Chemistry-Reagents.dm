@@ -1702,6 +1702,38 @@ datum
 			reagent_state = LIQUID
 			color = "#792300" // rgb: 121, 35, 0
 			toxpwr = 1
+			
+		toxin/chloraxine
+			name = "Chloraxine"
+			id = "chloraxine"
+			description = "A powerful chemical substance which is lethal at certain dosages."
+			reagent_state = LIQUID
+			color = "#7401DF" // rgb: 121, 35, 0
+			toxpwr = 2.5
+			
+		toxin/cyalodin
+			name = "Cyalodin"
+			id = "cyalodin"
+			description = "A poisonous substance known to be naturally deadly to humans."
+			reagent_state = LIQUID
+			color = "#7401DF" // rgb: 121, 35, 0
+			toxpwr = 0
+			
+			on_mob_life(var/mob/living/M as mob)
+				if(!M) M = holder.my_atom
+				M.adjustToxLoss(3)
+				M.adjustOxyLoss(3)
+				..()
+				return
+
+/*		toxin/cateline
+			name = "Cateline"
+			id = "cateline"
+			description = "WIP"
+			reagent_state = LIQUID
+			color = "#7401DF" // rgb: 121, 35, 0
+			toxpwr = 0 (this will eventually cause  anaphylactic shock)
+			*/
 
 		toxin/mutagen
 			name = "Unstable mutagen"
