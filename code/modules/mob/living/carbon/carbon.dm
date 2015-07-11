@@ -92,8 +92,8 @@
 
 	if(heart_attack && prob(25))
 		heart_attack = 0
-	if(!heart_attack && prob(5))
-		heart_attack = 1
+//	if(!heart_attack && prob(5))
+	//	heart_attack = 1
 	playsound(loc, "sparks", 50, 1, -1)
 	if (shock_damage > 15)
 		src.visible_message(
