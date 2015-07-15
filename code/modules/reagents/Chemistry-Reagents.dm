@@ -95,6 +95,8 @@ datum
 			on_update(var/atom/A)
 				return
 
+//			on_overdose(var/mob/living/M as mob)
+//				return
 
 
 		blood
@@ -1238,6 +1240,7 @@ datum
 				M.dizziness = 0
 				M.drowsyness = 0
 				M.stuttering = 0
+				M.heart_attack = 0
 				M.confused = 0
 				M.sleeping = 0
 				M.jitteriness = 0
@@ -1419,7 +1422,7 @@ datum
 		adrenaline
 			name = "Adrenaline"
 			id = "adrenaline"
-			description = "Adrenaline is a hormone used as a drug to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
+			description = "Adrenaline is a hormonal drug used to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
 
@@ -1605,7 +1608,7 @@ datum
 			description = "Intensely coloured powder obtained by grinding crayons."
 			reagent_state = LIQUID
 			color = "#888888"
-			overdose = 5
+			overdose = 1
 
 			red
 				name = "Red crayon dust"
@@ -1699,6 +1702,38 @@ datum
 			reagent_state = LIQUID
 			color = "#792300" // rgb: 121, 35, 0
 			toxpwr = 1
+			
+		toxin/chloraxine
+			name = "Chloraxine"
+			id = "chloraxine"
+			description = "A powerful chemical substance which is lethal at certain dosages."
+			reagent_state = LIQUID
+			color = "#7401DF" // rgb: 121, 35, 0
+			toxpwr = 2
+			
+		toxin/cyalodin
+			name = "Cyalodin"
+			id = "cyalodin"
+			description = "A poisonous substance known to be naturally deadly to humans."
+			reagent_state = LIQUID
+			color = "#7401DF" // rgb: 121, 35, 0
+			toxpwr = 0
+			
+			on_mob_life(var/mob/living/M as mob)
+				if(!M) M = holder.my_atom
+				M.adjustToxLoss(3)
+				M.adjustOxyLoss(3)
+				..()
+				return
+
+/*		toxin/cateline
+			name = "Cateline"
+			id = "cateline"
+			description = "WIP"
+			reagent_state = LIQUID
+			color = "#7401DF" // rgb: 121, 35, 0
+			toxpwr = 0 (this will eventually cause  anaphylactic shock)
+			*/
 
 		toxin/mutagen
 			name = "Unstable mutagen"
@@ -1842,7 +1877,6 @@ datum
 			description = "A strong neurotoxin that puts the subject into a death-like state."
 			reagent_state = SOLID
 			color = "#669900" // rgb: 102, 153, 0
-			toxpwr = 0.5
 
 			on_mob_life(var/mob/living/carbon/M as mob)
 				if(!M) M = holder.my_atom
@@ -2033,6 +2067,7 @@ datum
 			color = "#FFFFFF" // rgb: 255,255,255
 			toxpwr = 2
 			overdose = 20
+			scannable = 0
 
 			on_mob_life(var/mob/living/carbon/M as mob)
 				if(ishuman(M))
@@ -2042,6 +2077,7 @@ datum
 							H.losebreath = max(10, M.losebreath-10)
 						H.adjustOxyLoss(2)
 						H.Weaken(10)
+						H.heart_attack = 1
 				..()
 				return
 
@@ -2919,6 +2955,22 @@ datum
 				M.make_jittery(5)
 				if(adj_temp > 0)
 					holder.remove_reagent("frostoil", 10*REAGENTS_METABOLISM)
+				if(!data) data = 1
+				switch(data)
+					if(1 to 30)
+						//nothing
+					if(31 to 40)
+						if (prob(1))
+							var/mob/living/carbon/human/H = M
+							if(!H.heart_attack)
+								H.heart_attack = 1
+					if(41 to INFINITY)
+						if (prob(1.5))
+							var/mob/living/carbon/human/H = M
+							if(!H.heart_attack)
+								H.heart_attack = 1
+
+
 
 				holder.remove_reagent(src.id, 0.1)
 

@@ -77,6 +77,17 @@
 		reagents.add_reagent("toxin", 60)
 		update_icon()
 
+/obj/item/weapon/reagent_containers/glass/bottle/adrenaline
+	name = "Adrenaline"
+	desc = "A small bottle of Adrenaline. An effective cardiac stimulant."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bottle-3"
+
+	New()
+		..()
+		reagents.add_reagent("adrenaline", 60)
+		update_icon()
+
 /obj/item/weapon/reagent_containers/glass/bottle/cyanide
 	name = "cyanide bottle"
 	desc = "A small bottle of cyanide. Bitter almonds?"
@@ -130,6 +141,28 @@
 	New()
 		..()
 		reagents.add_reagent("anti_toxin", 60)
+		update_icon()
+
+/obj/item/weapon/reagent_containers/glass/bottle/cyalodin
+	name = "cyalodin bottle"
+	desc = "A small bottle of cyalodin. A powerful poison, where did you get this?."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bottle-4"
+
+	New()
+		..()
+		reagents.add_reagent("cyalodin", 30)
+		update_icon()
+
+/obj/item/weapon/reagent_containers/glass/bottle/chloraxine
+	name = "chloraxine bottle"
+	desc = "A small bottle of chloraxine. You probably shouldn't drink this."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bottle-4"
+
+	New()
+		..()
+		reagents.add_reagent("chloraxine", 60)
 		update_icon()
 
 /obj/item/weapon/reagent_containers/glass/bottle/mutagen

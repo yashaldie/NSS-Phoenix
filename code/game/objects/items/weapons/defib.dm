@@ -1,4 +1,4 @@
-//all code from Paradise Station. This is heavily WIP at the moment
+//Mostly code from Paradise Station. This is heavily WIP at the moment
 
 //backpack item
 
@@ -17,7 +17,7 @@
 	action_button_name = "Toggle Paddles"
 
 	var/on = 0 //if the paddles are equipped (1) or on the defib (0)
-	var/safety = 1 //if you can zap people with the defibs on harm mode
+	var/safety = 1 //if you can zap people with the defibs on hurt mode
 	var/powered = 0 //if there's a cell in the defib with enough power for a revive, blocks paddles from reviving otherwise
 	var/obj/item/weapon/twohanded/shockpaddles/paddles
 	var/obj/item/weapon/cell/high/bcell = null
@@ -92,6 +92,15 @@
 			W.loc = src
 			bcell = W
 			user << "<span class='notice'>You install a cell in [src].</span>"
+			return
+	if(istype(W, /obj/item/weapon/card/emag))
+		if(safety)
+			safety = 0
+			user << "<span class='warning'>You silently disable [src]'s safety protocols with the card."
+		else
+			safety = 1
+			user << "<span class='notice'>You silently enable [src]'s safety protocols with the card."
+		return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(bcell)
@@ -102,14 +111,6 @@
 
 	update_icon()
 	return
-
-/obj/item/weapon/defibrillator/emag_act(user as mob)
-	if(safety)
-		safety = 0
-		user << "<span class='warning'>You silently disable [src]'s safety protocols with the card."
-	else
-		safety = 1
-		user << "<span class='notice'>You silently enable [src]'s safety protocols with the card."
 
 /obj/item/weapon/defibrillator/emp_act(severity)
 	if(bcell)
@@ -231,13 +232,20 @@
 	update_icon()
 	return
 
-/obj/item/weapon/defibrillator/compact/combat/attackby(obj/item/weapon/W, mob/user, params)
+/obj/item/weapon/defibrillator/compact/combat/attackby(obj/item/weapon/W, mob/user as mob)
 	if(W == paddles)
 		paddles.unwield()
 		toggle_paddles()
 		update_icon()
 		return
-
+	if(istype(W, /obj/item/weapon/card/emag))
+		if(safety)
+			safety = 0
+			user << "<span class='warning'>You silently disable [src]'s safety protocols with the card."
+		else
+			safety = 1
+			user << "<span class='notice'>You silently enable [src]'s safety protocols with the card."
+		return
 //paddles
 
 /obj/item/weapon/twohanded/shockpaddles
@@ -317,7 +325,7 @@
 		user << "<span class='notice'>The instructions on [defib] don't mention how to revive that...</span>"
 		return
 	else
-		if(user.a_intent == "harm" && !defib.safety)
+		if(user.a_intent == "hurt" && !defib.safety)
 			busy = 1
 			H.visible_message("<span class='danger'>[user] has touched [H.name] with [src]!</span>", \
 					"<span class='userdanger'>[user] has touched [H.name] with [src]!</span>")
@@ -432,7 +440,7 @@
 		user << "<span class='notice'>This unit is only designed to work on humanoid lifeforms.</span>"
 		return
 	else
-		if(user.a_intent == "harm"  && !safety)
+		if(user.a_intent == "hurt"  && !safety)
 			busy = 1
 			H.visible_message("<span class='danger'>[user] has touched [H.name] with [src]!</span>", \
 					"<span class='userdanger'>[user] has touched [H.name] with [src]!</span>")

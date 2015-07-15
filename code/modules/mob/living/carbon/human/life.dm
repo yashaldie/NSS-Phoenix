@@ -1818,7 +1818,7 @@
 		return
 	else
 		losebreath += 5
-		adjustOxyLoss(10)
+		adjustOxyLoss(5)
 		adjustBrainLoss(rand(4,10))
 		Paralyse(2)
 	return

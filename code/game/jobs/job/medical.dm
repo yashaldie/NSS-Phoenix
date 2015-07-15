@@ -255,7 +255,7 @@
 	flag = PARAMEDIC
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 2
+	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"

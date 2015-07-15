@@ -114,7 +114,6 @@
 	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
 	return
 
-
 /mob/proc/restrained()
 	return
 
