@@ -1311,6 +1311,13 @@ datum/design/item/weapon/stunrevolver
 	build_path = /obj/item/weapon/gun/energy/stunrevolver
 	locked = 1
 
+/datum/design/tele_shield
+	id = "tele_shield"
+	req_tech = list("combat" = 4, "materials" = 3, "engineering" = 3)
+	materials = list("$metal" = 4000, "$glass" = 5000, "$silver" = 300)
+	build_path = /obj/item/weapon/shield/riot/tele
+	locked = 1
+
 datum/design/item/weapon/lasercannon
 	desc = "The lasing medium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core."
 	id = "lasercannon"
