@@ -149,7 +149,8 @@
 	else
 		alert_msg = null
 	if(alert_msg)
-		radio.autosay(alert_msg, "Supermatter Monitor")
+		if (!istype(get_area(src), /area/space))
+			radio.autosay(alert_msg, "Supermatter Monitor")
 
 /obj/machinery/power/supermatter/process()
 
