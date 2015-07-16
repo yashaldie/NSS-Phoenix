@@ -1436,8 +1436,8 @@ var/list/ghostteleportlocs = list()
 	name = "Cryogenics"
 	icon_state = "cryo"
 
-/area/medical/exam_room
-	name = "Exam Room"
+/area/medical/paramedic
+	name = "Paramedic's Office"
 	icon_state = "exam_room"
 
 /area/medical/genetics
