@@ -92,7 +92,7 @@
 	spawn_positions = 2
 	supervisors = "the head of security"
 	selection_color = "#ffeeee"
-	alt_titles = list("Forensic Technician","Private Investigator")
+	alt_titles = list("Forensic Technician","Criminal Investigator")
 	idtype = /obj/item/weapon/card/id/detective
 	access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_court)
 	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_court)
