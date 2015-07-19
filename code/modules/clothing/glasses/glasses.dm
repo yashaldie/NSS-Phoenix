@@ -1,4 +1,3 @@
-
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -9,10 +8,43 @@
 	//var/darkness_view = 0//Base human is 2
 	//var/invisa_view = 0
 	var/prescription = 0
+	var/prescription_upgradable = 0
 	var/toggleable = 0
 	var/active = 1
 	var/obj/screen/overlay = null
 	body_parts_covered = EYES
+
+/obj/item/clothing/glasses/New()
+	. = ..()
+	if(prescription_upgradable && prescription)
+		// Pre-upgraded upgradable glasses
+		name = "prescription [name]"
+
+/obj/item/clothing/glasses/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if (user.stat || user.restrained() || !ishuman(user))
+		return ..()
+	var/mob/living/carbon/human/H = user
+	if(prescription_upgradable)
+		if(istype(O, /obj/item/clothing/glasses/regular))
+			if(prescription)
+				H << "You can't possibly imagine how adding more lenses would improve \the [name]."
+				return
+			H.unEquip(O)
+			O.loc = src // Store the glasses for later removal
+			H << "You fit \the [name] with lenses from \the [O]."
+			prescription = 1
+			name = "prescription [name]"
+			return
+		if(prescription && istype(O, /obj/item/weapon/screwdriver))
+			var/obj/item/clothing/glasses/regular/G = locate() in src
+			if(!G)
+				G = new(get_turf(H))
+			H << "You salvage the prescription lenses from \the [name]."
+			prescription = 0
+			name = initial(name)
+			H.put_in_hands(G)
+			return
+	return ..()
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
@@ -35,6 +67,7 @@
 	icon_action_button = "action_meson" //This doesn't actually matter, the action button is generated from the current icon_state. But, this is the only way to get it to show up.
 	origin_tech = "magnets=2;engineering=2"
 	toggleable = 1
+	prescription_upgradable = 1
 	vision_flags = SEE_TURFS
 
 /obj/item/clothing/glasses/meson/New()
@@ -42,21 +75,23 @@
 	overlay = global_hud.meson
 
 /obj/item/clothing/glasses/meson/prescription
-	name = "prescription mesons"
-	desc = "Optical Meson Scanner with prescription lenses."
 	prescription = 1
+
+/obj/item/clothing/glasses/meson/cyber
+	name = "Eye Replacement Implant"
+	desc = "An implanted replacement for a left eye with meson vision capabilities."
+	icon_state = "cybereye-green"
+	item_state = "eyepatch"
+	flags = NODROP
+	prescription_upgradable = 0
 
 /obj/item/clothing/glasses/science
 	name = "Science Goggles"
 	desc = "The goggles do nothing!"
 	icon_state = "purple"
 	item_state = "glasses"
-	
+
 /obj/item/clothing/glasses/science/prescription
-	name = "Prescription Science Goggles"
-	desc = "The goggles do nothing! (Except helping you see)"
-	icon_state = "purple"
-	item_state = "glasses"
 	prescription = 1
 
 /obj/item/clothing/glasses/science/New()
@@ -69,7 +104,11 @@
 	icon_state = "night"
 	item_state = "glasses"
 	origin_tech = "magnets=2"
+	prescription_upgradable = 0
 	darkness_view = 7
+
+/obj/item/clothing/glasses/night
+	prescription = 1
 
 /obj/item/clothing/glasses/night/New()
 	..()
@@ -112,6 +151,13 @@
 	toggleable = 1
 	vision_flags = SEE_OBJS
 
+/obj/item/clothing/glasses/material/cyber
+	name = "Eye Replacement Implant"
+	desc = "An implanted replacement for a left eye with material vision capabilities."
+	icon_state = "cybereye-blue"
+	item_state = "eyepatch"
+	flags = NODROP
+
 /obj/item/clothing/glasses/regular
 	name = "Prescription Glasses"
 	desc = "Made by Nerd. Co."
@@ -145,6 +191,7 @@
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"
+	prescription_upgradable = 1
 	darkness_view = -1
 
 /obj/item/clothing/glasses/welding
@@ -194,10 +241,10 @@
 	desc = "Covers the eyes, preventing sight."
 	icon_state = "blindfold"
 	item_state = "blindfold"
+	prescription_upgradable = 0
 	//vision_flags = BLIND  	// This flag is only supposed to be used if it causes permanent blindness, not temporary because of glasses
 
 /obj/item/clothing/glasses/sunglasses/prescription
-	name = "prescription sunglasses"
 	prescription = 1
 
 /obj/item/clothing/glasses/sunglasses/big
@@ -209,6 +256,7 @@
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
+	prescription_upgradable = 0
 	var/obj/item/clothing/glasses/hud/security/hud = null
 
 	New()
@@ -217,9 +265,6 @@
 		return
 
 /obj/item/clothing/glasses/sunglasses/sechud/prescription
-	name = "Prescription HUDSunglasses"
-	desc = "Prescription Sunglasses with a HUD."
-	icon_state = "sunhud"
 	prescription = 1
 
 	New()
@@ -287,3 +332,10 @@
 	icon_state = "thermalimplants"
 	item_state = "syringe_kit"
 	toggleable = 0
+
+/obj/item/clothing/glasses/thermal/cyber
+	name = "Eye Replacement Implant"
+	desc = "An implanted replacement for a left eye with thermal vision capabilities."
+	icon_state = "cybereye-red"
+	item_state = "eyepatch"
+	flags = NODROP
