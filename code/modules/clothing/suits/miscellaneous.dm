@@ -229,6 +229,12 @@
 	icon_state = "neocoat"
 	item_state = "neocoat"
 
+/obj/item/clothing/suit/civtrench
+	name = "trenchcoat"
+	desc = "All of the style, with none of the armour."
+	icon_state = "jensencoat"
+	item_state = "civtrench"
+
 //stripper
 /obj/item/clothing/under/stripper
 	body_parts_covered = 0
