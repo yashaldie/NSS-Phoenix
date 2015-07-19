@@ -17,8 +17,8 @@
 /obj/item/weapon/comknife
 	name = "NTC8 tactical knife"
 	desc = "A tactical knife widely used by modern military forces."
-	icon_state = "knife"
-	item_state = "combatknife"
+	icon_state = "combatknife"
+	item_state = "knife"
 	flags = CONDUCT
 	force = 15
 	throwforce = 17
