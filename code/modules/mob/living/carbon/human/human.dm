@@ -802,12 +802,54 @@
 		number -= 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
 		number += 1
+	if(istype(src.glasses, /obj/item/clothing/glasses/hud/health_advanced))
+		number += 1
 	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
 		var/obj/item/clothing/glasses/welding/W = src.glasses
 		if(!W.up)
 			number += 2
 	return number
 
+/*/mob/living/carbon/human/earcheck()
+	var/ear_safety = 0
+
+	if(istype(src.l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
+		ear_safety += 2
+	if(istype(src.l_ear, /obj/item/device/radio/headset/alt) || istype(M:r_ear, /obj/item/device/radio/headset/alt))
+		ear_safety += 2
+	if(istype(src.l_ear, /obj/item/device/radio/headset/syndicate/alt) || istype(M:r_ear, /obj/item/device/radio/headset/syndicate/alt))
+		ear_safety += 2
+	if(istype(src.l_ear, /obj/item/device/radio/headset/headset_sec/alt) || istype(M:r_ear, /obj/item/device/radio/headset/headset_sec/alt))
+		ear_safety += 2
+	if(istype(src.l_ear, /obj/item/device/radio/headset/heads/hos/alt) || istype(M:r_ear, /obj/item/device/radio/headset/heads/hos/alt))
+		ear_safety += 2
+	if(istype(src.l_ear, /obj/item/device/radio/headset/heads/captain/alt) || istype(M:r_ear, /obj/item/device/radio/headset/heads/captain/alt))
+		ear_safety += 2
+	if(HULK in src.mutations)
+		ear_safety += 1
+	if(istype(src.head, /obj/item/clothing/head/helmet))
+		ear_safety += 1
+
+	return ear_safety
+
+			if(ishuman(M))
+				if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
+					ear_safety += 2
+				if(istype(M:l_ear, /obj/item/device/radio/headset/alt) || istype(M:r_ear, /obj/item/device/radio/headset/alt))
+					ear_safety += 2
+				if(istype(M:l_ear, /obj/item/device/radio/headset/syndicate/alt) || istype(M:r_ear, /obj/item/device/radio/headset/syndicate/alt))
+					ear_safety += 2
+				if(istype(M:l_ear, /obj/item/device/radio/headset/headset_sec/alt) || istype(M:r_ear, /obj/item/device/radio/headset/headset_sec/alt))
+					ear_safety += 2
+				if(istype(M:l_ear, /obj/item/device/radio/headset/heads/hos/alt) || istype(M:r_ear, /obj/item/device/radio/headset/heads/hos/alt))
+					ear_safety += 2
+				if(istype(M:l_ear, /obj/item/device/radio/headset/heads/captain/alt) || istype(M:r_ear, /obj/item/device/radio/headset/heads/captain/alt))
+					ear_safety += 2
+				if(HULK in M.mutations)
+					ear_safety += 1
+				if(istype(M:head, /obj/item/clothing/head/helmet))
+					ear_safety += 1
+*/
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)
 	if(species.has_fine_manipulation)
 		return 1

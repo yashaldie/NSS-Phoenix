@@ -34,14 +34,14 @@
 	desc = "For when those times when you really need to punch an unathi."
 	icon_state = "boxingu"
 	item_state = "boxing"
-	species_restricted = list("exclude","Human", "Skrell")
+	species_restricted = null
 
 /obj/item/clothing/gloves/boxing/green/u
 	name = "universal boxing gloves"
 	desc = "For when those times when you really need to punch an unathi."
 	icon_state = "boxinggreenu"
 	item_state = "boxinggreen"
-	species_restricted = list("exclude","Human", "Skrell")
+	species_restricted = null
 
 	redcoat
 		item_color = "redcoat"		//Exists for washing machines. Is not different from white gloves in any way.

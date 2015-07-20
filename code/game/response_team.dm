@@ -70,6 +70,7 @@ var/engineer_slots = 0
 	message_admins("[key_name_admin(usr)] is dispatching an Emergency Response Team.", 1)
 	log_admin("[key_name(usr)] used Dispatch Response Team.")
 	log_admin_single("[key_name(usr)] used Dispatch Response Team.")
+	message_devs("ERT Dispatched. Type: [selected_role], S = [sec_slots], M = [medic_slots], E = [engineer_slots], C = [command_slots]. Checking for completion...")
 	trigger_armed_response_team(1)
 
 client/verb/JoinResponseTeam()
