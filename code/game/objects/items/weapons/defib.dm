@@ -97,9 +97,13 @@
 		if(safety)
 			safety = 0
 			user << "<span class='warning'>You silently disable [src]'s safety protocols with the card."
+			update_icon()
+			message_devs("safety = [safety]")
 		else
 			safety = 1
 			user << "<span class='notice'>You silently enable [src]'s safety protocols with the card."
+			update_icon()
+			message_devs("safety = [safety]")
 		return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
@@ -242,9 +246,13 @@
 		if(safety)
 			safety = 0
 			user << "<span class='warning'>You silently disable [src]'s safety protocols with the card."
+			update_icon()
+			message_devs("safety = [safety]")
 		else
 			safety = 1
 			user << "<span class='notice'>You silently enable [src]'s safety protocols with the card."
+			update_icon()
+			message_devs("safety = [safety]")
 		return
 //paddles
 
@@ -299,7 +307,9 @@
 /obj/item/weapon/twohanded/shockpaddles/proc/check_defib_exists(mainunit, var/mob/living/carbon/human/M, var/obj/O)
 	if (!mainunit || !istype(mainunit, /obj/item/weapon/defibrillator))	//To avoid weird issues from admin spawns
 		M.unEquip(O)
-		qdel(O)
+		message_devs("Defib-less paddles detected. Attempting to delete. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+		del(O)
+		message_devs("Defib-less paddles deleted successfully (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		return 0
 	else
 		return 1
