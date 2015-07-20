@@ -82,7 +82,7 @@
 	desc = "An implanted replacement for a left eye with meson vision capabilities."
 	icon_state = "cybereye-green"
 	item_state = "eyepatch"
-	flags = NODROP
+	canremove = 0
 	prescription_upgradable = 0
 
 /obj/item/clothing/glasses/science
@@ -156,7 +156,7 @@
 	desc = "An implanted replacement for a left eye with material vision capabilities."
 	icon_state = "cybereye-blue"
 	item_state = "eyepatch"
-	flags = NODROP
+	canremove = 0
 
 /obj/item/clothing/glasses/regular
 	name = "Prescription Glasses"
@@ -338,4 +338,4 @@
 	desc = "An implanted replacement for a left eye with thermal vision capabilities."
 	icon_state = "cybereye-red"
 	item_state = "eyepatch"
-	flags = NODROP
+	canremove = 0

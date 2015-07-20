@@ -425,7 +425,7 @@
 	var/cooldown = 0
 	var/busy = 0
 	var/safety = 1
-	flags = NODROP
+	canremove = 0
 
 /obj/item/weapon/borg_defib/attack(mob/M, mob/user)
 	var/tobehealed
