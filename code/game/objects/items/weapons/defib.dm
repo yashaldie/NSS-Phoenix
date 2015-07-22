@@ -307,9 +307,9 @@
 /obj/item/weapon/twohanded/shockpaddles/proc/check_defib_exists(mainunit, var/mob/living/carbon/human/M, var/obj/O)
 	if (!mainunit || !istype(mainunit, /obj/item/weapon/defibrillator))	//To avoid weird issues from admin spawns
 		M.unEquip(O)
-		message_devs("Defib-less paddles detected. Attempting to delete. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+		message_devs("Defib-less paddles detected. Attempting to delete.")
 		del(O)
-		message_devs("Defib-less paddles deleted successfully (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
+		message_devs("Defib-less paddles deleted successfully.")
 		return 0
 	else
 		return 1

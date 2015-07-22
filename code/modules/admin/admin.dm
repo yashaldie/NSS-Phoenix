@@ -15,7 +15,6 @@ var/global/floorIsLava = 0
 
 /proc/message_devs(var/msg)
 	msg = "<span class=\"dev_message\"><span class=\"prefix\">DEBUG LOG:</span> <span class=\"message\">[msg]</span></span>"
-	log_dev(msg)
 	for(var/client/C in admins)
 		if(R_DEV & C.holder.rights)
 			C << msg
