@@ -50,7 +50,7 @@
 	idtype = /obj/item/weapon/card/id/med
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 	minimal_access = list(access_medical, access_morgue, access_surgery, access_virology)
-	alt_titles = list("Surgeon","EMT","Emergency Physician","Nurse","Virologist")
+	alt_titles = list("Surgeon","Nurse","Virologist")
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0

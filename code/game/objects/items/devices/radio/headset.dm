@@ -54,10 +54,25 @@
 			return ..(freq, level)
 	return -1
 
+/obj/item/device/radio/headset/alt
+	name = "bowman headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
+//	flags = EARBANGPROTECT
+	icon_state = "com_headset_alt"
+	item_state = "com_headset_alt"
+
 /obj/item/device/radio/headset/syndicate
 	origin_tech = "syndicate=3"
 	syndie = 1
 	ks1type = /obj/item/device/encryptionkey/syndicate
+
+/obj/item/device/radio/headset/syndicate/alt //undisguised bowman with flash protection
+	name = "syndicate headset"
+	desc = "A syndicate headset that can be used to hear all radio frequencies."
+//	flags = EARBANGPROTECT
+	origin_tech = "syndicate=3"
+	icon_state = "syndie_headset"
+	item_state = "syndie_headset"
 
 /obj/item/device/radio/headset/binary
 	origin_tech = "syndicate=3"
@@ -69,6 +84,13 @@
 	icon_state = "sec_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_sec
+
+/obj/item/device/radio/headset/headset_sec/alt
+	name = "security bowman headset"
+	desc = "This is used by your elite security force."
+//	flags = EARBANGPROTECT
+	icon_state = "sec_headset_alt"
+	item_state = "sec_headset_alt"
 
 /obj/item/device/radio/headset/headset_eng
 	name = "engineering radio headset"
@@ -140,6 +162,13 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
 
+/obj/item/device/radio/headset/heads/captain/alt
+	name = "\proper the captain's bowman headset"
+	desc = "The headset of the boss. Protects ears from flashbangs."
+//	flags = EARBANGPROTECT
+	icon_state = "com_headset_alt"
+	item_state = "com_headset_alt"
+
 /obj/item/device/radio/headset/heads/ai_integrated //No need to care about icons, it should be hidden inside the AI anyway.
 	name = "\improper AI subspace transceiver"
 	desc = "Integrated AI radio transceiver."
@@ -169,6 +198,13 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
 
+/obj/item/device/radio/headset/heads/hos/alt
+	name = "\proper the head of security's bowman headset"
+	desc = "The headset of the man in charge of keeping order and protecting the station."
+//	flags = EARBANGPROTECT
+	icon_state = "com_headset_alt"
+	item_state = "com_headset_alt"
+
 /obj/item/device/radio/headset/heads/ce
 	name = "chief engineer's headset"
 	desc = "The headset of the guy who is in charge of morons"
@@ -193,10 +229,18 @@
 
 /obj/item/device/radio/headset/blueshield
 	name = "blueshield guard's headset"
-	desc = "Headset of blueshield guards. Channels are as follows: :c - command, :s - security"
+	desc = "the headset used by blueshield guards. Channels are as follows: :c - command, :s - security"
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/bs
+
+/obj/item/device/radio/headset/blueshield/alt
+	name = "\proper blueshield's bowman headset"
+	desc = "The headset of the Blueshield."
+//	flags = EARBANGPROTECT
+	icon_state = "com_headset_alt"
+	item_state = "com_headset_alt"
+
 /*
 /obj/item/device/radio/headset/headset_mine
 	name = "mining radio headset"
@@ -233,6 +277,13 @@
 	item_state = "headset"
 	freerange = 1
 	ks2type = /obj/item/device/encryptionkey/ert
+
+/obj/item/device/radio/headset/ert/alt
+	name = "\proper emergency response team's bowman headset"
+	desc = "The headset of the boss. Protects ears from flashbangs."
+//	flags = EARBANGPROTECT
+	icon_state = "com_headset_alt"
+	item_state = "com_headset_alt"
 
 /obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()

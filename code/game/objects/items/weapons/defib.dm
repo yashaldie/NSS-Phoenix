@@ -97,9 +97,13 @@
 		if(safety)
 			safety = 0
 			user << "<span class='warning'>You silently disable [src]'s safety protocols with the card."
+			update_icon()
+			message_devs("safety = [safety]")
 		else
 			safety = 1
 			user << "<span class='notice'>You silently enable [src]'s safety protocols with the card."
+			update_icon()
+			message_devs("safety = [safety]")
 		return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
@@ -242,9 +246,13 @@
 		if(safety)
 			safety = 0
 			user << "<span class='warning'>You silently disable [src]'s safety protocols with the card."
+			update_icon()
+			message_devs("safety = [safety]")
 		else
 			safety = 1
 			user << "<span class='notice'>You silently enable [src]'s safety protocols with the card."
+			update_icon()
+			message_devs("safety = [safety]")
 		return
 //paddles
 
@@ -299,7 +307,9 @@
 /obj/item/weapon/twohanded/shockpaddles/proc/check_defib_exists(mainunit, var/mob/living/carbon/human/M, var/obj/O)
 	if (!mainunit || !istype(mainunit, /obj/item/weapon/defibrillator))	//To avoid weird issues from admin spawns
 		M.unEquip(O)
-		qdel(O)
+		message_devs("Defib-less paddles detected. Attempting to delete.")
+		del(O)
+		message_devs("Defib-less paddles deleted successfully.")
 		return 0
 	else
 		return 1
@@ -425,7 +435,7 @@
 	var/cooldown = 0
 	var/busy = 0
 	var/safety = 1
-	flags = NODROP
+	canremove = 0
 
 /obj/item/weapon/borg_defib/attack(mob/M, mob/user)
 	var/tobehealed

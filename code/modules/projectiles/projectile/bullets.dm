@@ -130,6 +130,7 @@
 //Overall less damage than slugs in exchange for more damage at very close range and more embedding
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
+	icon_state = "bullet_old"
 	damage = 13
 	pellets = 6
 	range_step = 1
@@ -142,6 +143,7 @@
 	penetrating = 1
 
 /obj/item/projectile/bullet/rifle/a145
+	icon_state = "bullet-2"
 	damage = 80
 	stun = 3
 	weaken = 3
