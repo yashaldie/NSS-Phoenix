@@ -145,10 +145,10 @@
 			user << "<span class='warning'>You need a free hand to hold the paddles!</span>"
 			update_icon()
 			return
-		if(!(usr.get_item_by_slot(slot_back) == src) && !(usr.get_item_by_slot(slot_belt) == src))
-			on = 0
-			user << "<span class='warning'>You need to wear the defibrillator on your back first!</span>"
-			update_icon()
+//		if(!(usr.get_item_by_slot(slot_back) == src) && !(usr.get_item_by_slot(slot_belt) == src))
+//			on = 0
+//			user << "<span class='warning'>You need to wear the defibrillator on your back first!</span>"
+//			update_icon()
 		else
 			paddles.loc = user
 	else		//Remove from their hands and back onto the defib unit
