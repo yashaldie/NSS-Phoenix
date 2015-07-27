@@ -1702,7 +1702,7 @@ datum
 			reagent_state = LIQUID
 			color = "#792300" // rgb: 121, 35, 0
 			toxpwr = 1
-			
+
 		toxin/chloraxine
 			name = "Chloraxine"
 			id = "chloraxine"
@@ -1710,20 +1710,24 @@ datum
 			reagent_state = LIQUID
 			color = "#7401DF" // rgb: 121, 35, 0
 			toxpwr = 2
-			
+
 		toxin/cyalodin
 			name = "Cyalodin"
 			id = "cyalodin"
-			description = "A poisonous substance known to be naturally deadly to humans."
+			description = "An incredibly lethal chemical used by less-than-legal military forces"
 			reagent_state = LIQUID
 			color = "#7401DF" // rgb: 121, 35, 0
-			toxpwr = 0
-			
+			toxpwr = 5
+			custom_metabolism = 0.5
+
 			on_mob_life(var/mob/living/M as mob)
-				if(!M) M = holder.my_atom
-				M.adjustToxLoss(3)
-				M.adjustOxyLoss(3)
-				..()
+				if(prob(20))
+					M << "\red Liquid fire fills your veins with agony!"
+					M.adjustOxyLoss(5)
+					M.adjustHalLoss(20)
+				else if(prob(80))
+					M.adjustOxyLoss(3*REM)
+					..()
 				return
 
 /*		toxin/cateline
