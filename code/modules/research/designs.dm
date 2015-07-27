@@ -1164,6 +1164,15 @@ datum/design/item/medical/adv_reagent_scanner
 	reliability_base = 74
 	build_path = /obj/item/device/reagent_scanner/adv
 
+/*
+/datum/design/item/medical/sensor_device
+	desc = "A device for tracking crew members on the station."
+	id = "sensor_device"
+	req_tech = list("biotech" = 4, "magnets" = 3, "materials" = 3)
+	materials = list("$metal" = 30, "$glass" = 20)
+	reliability_base = 76
+	build_path = /obj/item/device/sensor_device
+*/
 datum/design/item/medical/mmi
 	id = "mmi"
 	req_tech = list("programming" = 2, "biotech" = 3)
@@ -1498,6 +1507,22 @@ datum/design/item/hud/security
 	req_tech = list("magnets" = 3, "combat" = 2)
 	build_path = /obj/item/clothing/glasses/hud/security
 	locked = 1
+
+/datum/design/item/hud/health_hud_night
+	name = "Night Vision Health Scanner HUD"
+	id = "health_hud_night"
+	req_tech = list("biotech" = 4, "magnets" = 5)
+	materials = list("$metal" = 200, "$glass" = 200, "$uranium" = 1000, "$silver" = 250)
+	build_path = /obj/item/clothing/glasses/hud/health/night
+
+/datum/design/item/hud/security_hud_night
+	name = "Night Vision Security HUD"
+	id = "security_hud_night"
+	req_tech = list("magnets" = 5, "combat" = 4)
+	materials = list("$metal" = 200, "$glass" = 200, "$uranium" = 1000, "$gold" = 350)
+	build_path = /obj/item/clothing/glasses/hud/security/night
+	locked = 1
+
 
 /////////////////////////////////////////
 ////////////////PDA Stuff////////////////
