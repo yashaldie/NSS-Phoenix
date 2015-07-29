@@ -136,6 +136,7 @@
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	flags = CONDUCT
 	force = 15.0
+	var/emagged = 0
 	w_class = 2.0
 	throwforce = 9.0
 	throw_speed = 3
@@ -145,6 +146,17 @@
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = 1
 	edge = 1
+
+/obj/item/weapon/circular_saw/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/card/emag))
+		if(emagged == 0)
+			emagged = 1
+			user << "<span class='warning'>You silently disable the motor limiter.</span>"
+			force = 25
+		else
+			user << "<span class='warning'>You silently enable the motor limiter.</span>"
+			emagged = 0
+			force = 15
 
 //misc, formerly from code/defines/weapons.dm
 
