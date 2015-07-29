@@ -54,6 +54,7 @@
 	icon_state = "pulse_carbine"
 	item_state = "pulse"
 	cell_type = /obj/item/weapon/cell/super
+	projectile_type = /obj/item/projectile/beam/pulsec
 
 
 /obj/item/weapon/gun/energy/pulse_rifle/pistol
@@ -64,6 +65,7 @@
 	icon_state = "pulse_pistol"
 	item_state = "gun"
 	cell_type = /obj/item/weapon/cell/super
+	projectile_type = /obj/item/projectile/beam/pulsep
 
 //WHY?
 /obj/item/weapon/gun/energy/pulse_rifle/M1911

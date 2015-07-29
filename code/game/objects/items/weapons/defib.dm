@@ -145,9 +145,13 @@
 			user << "<span class='warning'>You need a free hand to hold the paddles!</span>"
 			update_icon()
 			return
-		paddles.loc = user
-	else
-		//Remove from their hands and back onto the defib unit
+//		if(!(usr.get_item_by_slot(slot_back) == src) && !(usr.get_item_by_slot(slot_belt) == src))
+//			on = 0
+//			user << "<span class='warning'>You need to wear the defibrillator on your back first!</span>"
+//			update_icon()
+		else
+			paddles.loc = user
+	else		//Remove from their hands and back onto the defib unit
 		remove_paddles(user)
 
 	update_icon()
@@ -247,12 +251,10 @@
 			safety = 0
 			user << "<span class='warning'>You silently disable [src]'s safety protocols with the card."
 			update_icon()
-			message_devs("safety = [safety]")
 		else
 			safety = 1
 			user << "<span class='notice'>You silently enable [src]'s safety protocols with the card."
 			update_icon()
-			message_devs("safety = [safety]")
 		return
 //paddles
 
