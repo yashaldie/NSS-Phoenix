@@ -232,7 +232,7 @@
 /obj/item/clothing/suit/civtrench
 	name = "trenchcoat"
 	desc = "All of the style, with none of the armour."
-	icon_state = "jensencoat"
+	icon_state = "civtrench"
 	item_state = "civtrench"
 
 //stripper
