@@ -155,7 +155,7 @@
 	sharp = 1
 	edge = 1
 	w_class = 4.0
-	force_wielded = 15
+	force_wielded = 25
 	attack_verb = list("shredded", "torn", "ripped", "slashed", "carved", "eviscerated", "scratched", "sliced", "gashed")
 
 /obj/item/weapon/twohanded/eclaws //This will be a syndie rigsuit module, soon enough. WIP
@@ -170,7 +170,7 @@
 	w_class = 4.0
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
-	force_wielded = 25
+	force_wielded = 35
 	attack_verb = list("shredded", "torn", "ripped", "slashed", "carved", "eviscerated", "scratched", "sliced", "gashed")
 
 /*
