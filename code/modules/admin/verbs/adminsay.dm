@@ -14,13 +14,19 @@
 	if(check_rights(R_AUDITOR|R_PERMISSIONS,0))
 		color = "headminsay"
 
-	if(check_rights(R_ADMIN,0))
+	if(check_rights((R_ADMIN & R_AUDITOR),0))
+		msg = "<span class='[color]'><span class='prefix'>ADMIN/AUDITOR:</span> <EM>[key_name(usr, 1)]</EM> (<b><a href='?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</b></span></span>"
+		for(var/client/C in admins)
+			if((R_AUDITOR|R_ADMIN) & C.holder.rights)
+				C << msg
+
+	else if(check_rights(R_ADMIN,0))
 		msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> (<b><a href='?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</b></span></span>"
 		for(var/client/C in admins)
 			if((R_AUDITOR|R_ADMIN) & C.holder.rights)
 				C << msg
 
-	if(check_rights(R_AUDITOR,0))
+	else if(check_rights(R_AUDITOR,0))
 		msg = "<span class='[color]'><span class='prefix'>AUDITOR:</span> <EM>[key_name(usr, 1)]</EM> (<b><a href='?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</b></span></span>"
 		for(var/client/C in admins)
 			if((R_AUDITOR|R_ADMIN) & C.holder.rights)
