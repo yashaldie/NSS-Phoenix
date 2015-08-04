@@ -8,9 +8,11 @@ var/global/floorIsLava = 0
 	msg = "<span class=\"log_message\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_adminwarn(msg)
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
+		if((R_ADMIN & R_AUDITOR) & C.holder.rights)
 			C << msg
-		if(R_AUDITOR & C.holder.rights)
+		else if(R_ADMIN & C.holder.rights)
+			C << msg
+		else if(R_AUDITOR & C.holder.rights)
 			C << msg
 
 /proc/message_devs(var/msg)
