@@ -145,7 +145,7 @@
 	return
 
 /obj/machinery/door/airlock/AIMiddleClick() // Toggles door bolt lights.
-	if(!src.)
+	if(!src.emergency)
 		Topic(src, list("src"= "\ref[src]", "aiEnable"="11"), 1) // 1 meaning no window (consistency!)
 	else
 		Topic(src, list("src"= "\ref[src]", "aiDisable"="11"), 1)
