@@ -460,6 +460,8 @@ var/list/admin_verbs_headadmin = list(
 	/client/proc/toggle_antagHUD_restrictions,
 	/client/proc/edit_vip_permissions,
 	/client/proc/everyone_random,
+	/client/proc/global_erp,
+	/client/proc/erp,
 	/client/proc/cinematic,
 	//client/proc/set_ooc,
 	/client/proc/artillery,
@@ -966,6 +968,31 @@ var/list/admin_verbs_hideable = list(
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/global_erp()
+	set category = "Fun"
+	set name = "ERP Detected Global"
+	set desc = "Alerts everyone that ERP has been detected, and that spiders /will/ be deployed."
+
+	for (var/mob/T as mob in mob_list)
+		T << "<br><center><span class='notice'><b><font size=4>ERP DETECTED.<br> Deploying spiders.</font></b><br></span></center><br>"
+		T << 'sound/effects/erpdetected.wav'
+
+	log_admin("[key_name(usr)] told everyone that ERP has been detected, and spiders will be on their way.")
+	message_admins("\blue [key_name_admin(usr)] told everyone that ERP has been detected, and spiders will be on their way.", 1)
+
+/client/proc/erp(mob/T as mob in mob_list)
+	set category = "Fun"
+	set name = "ERP Detected"
+	set desc = "Alerts someone that ERP has been detected, and that spiders /will/ be deployed."
+
+	T << "<span class='danger'><b><font size=3>ERP DETECTED.</font></b></span>"
+	T << "<span class='danger'>Deploying spiders.</span>"
+	T << 'sound/effects/erpdetected.wav'
+
+
+	log_admin("[key_name(usr)] told [key_name(T)] that ERP has been detected, and spiders will be on their way.")
+	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] that ERP has been detected, and spiders will be on their way.", 1)
 
 /client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
 	set category = "Fun"
