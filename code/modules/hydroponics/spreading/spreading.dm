@@ -232,17 +232,9 @@
 /obj/effect/plant/attackby(var/obj/item/weapon/W, var/mob/user)
 
 	plant_controller.add_plant(src)
-
-	if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
-		if(!seed)
-			user << "There is nothing to take a sample from."
-			return
-		seed.harvest(user,0,1)
-		health -= (rand(3,5)*10)
-	else
-		..()
-		if(W.force)
-			health -= W.force
+	..()
+	if(W.force)
+		health -= W.force
 	check_health()
 
 /obj/effect/plant/ex_act(severity)
