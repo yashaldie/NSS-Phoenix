@@ -80,13 +80,13 @@
 				var/mob/living/carbon/human/H = victim
 				if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
 					if(prob(20))
-						C.take_blood(src,5)
+						C.take_blood(src,10)
 						victim << "<span class='warning'>A tendril punctures your suit with a sharp prick!</span>"
 					else
 						return
 				else
 					victim << "<span class='warning'>You feel a sharp prick!</span>" //suck it, mcfluff
-					C.take_blood(src,5)
+					C.take_blood(src,10)
 
 			victim.loc = src.loc
 			return
