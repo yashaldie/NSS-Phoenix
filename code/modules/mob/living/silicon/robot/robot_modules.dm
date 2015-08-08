@@ -227,7 +227,7 @@
 	src.modules += new /obj/item/device/multitool(src)
 	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/analyzer(src)
-	src.modules += new /obj/item/taperoll/engineering(src)
+	src.modules += new /obj/item/tapeproj/engineering(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.emag = new /obj/item/borg/stun(src)
@@ -280,7 +280,7 @@
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
 	src.modules += new /obj/item/weapon/melee/baton/robot(src)
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src)
-	src.modules += new /obj/item/taperoll/police(src)
+	src.modules += new /obj/item/tapeproj/security(src)
 	src.modules += new /obj/item/weapon/book/manual/security_space_law(src)
 	src.emag = new /obj/item/weapon/gun/energy/laser/mounted(src)
 	return

@@ -421,7 +421,7 @@ About the new airlock wires panel:
 			icon_state = "door_locked"
 		else
 			icon_state = "door_closed"
-		if(p_open || welded)
+		if(p_open || welded || emergency)
 			overlays = list()
 			if(p_open)
 				overlays += image(icon, "panel_open")
@@ -432,6 +432,8 @@ About the new airlock wires panel:
 					overlays += image(icon, "sparks_damaged")
 			if(welded)
 				overlays += image(icon, "welded")
+			if(emergency && !locked)
+				overlays += image(icon, "elights")
 		else if (health < maxhealth * 3/4 && !(stat & NOPOWER))
 			overlays += image(icon, "sparks_damaged")
 	else
@@ -501,6 +503,11 @@ About the new airlock wires panel:
 		t1 += text("IdScan disabled. <A href='?src=\ref[];aiEnable=1'>Enable?</a><br>\n", src)
 	else
 		t1 += text("IdScan enabled. <A href='?src=\ref[];aiDisable=1'>Disable?</a><br>\n", src)
+
+	if(src.emergency)
+		t1 += text("Emergency Access Override is enabled. <A href='?src=\ref[];aiDisable=11'>Disable?</a><br>\n", src)
+	else
+		t1 += text("Emergency Access Override is disabled. <A href='?src=\ref[];aiEnable=11'>Enable?</a><br>\n", src)
 
 	if(src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1))
 		t1 += text("Main Power Input wire is cut.<br>\n")
@@ -785,6 +792,13 @@ About the new airlock wires panel:
 					else
 						usr << "The door bolt lights are already disabled!"
 
+				if(11)
+					// Emergency access
+					if (src.emergency)
+						emergency = 0
+					else
+						usr << text("Emergency access is already disabled!")
+
 		else if(href_list["aiEnable"])
 			var/code = text2num(href_list["aiEnable"])
 			switch (code)
@@ -876,6 +890,13 @@ About the new airlock wires panel:
 					else
 						usr << "The door bolt lights are already enabled!"
 
+				if(11)
+					// Emergency access
+					if (!src.emergency)
+						emergency = 1
+					else
+						usr << text("Emergency access is already enabled!")
+
 	add_fingerprint(usr)
 	update_icon()
 	if(!nowindow)
@@ -888,7 +909,7 @@ About the new airlock wires panel:
 		if(src.isElectrified())
 			if(src.shock(user, 75))
 				return
-	if(istype(C, /obj/item/device/detective_scanner) || istype(C, /obj/item/taperoll))
+	if(istype(C, /obj/item/device/detective_scanner) || istype(C, /obj/item/tapeproj))
 		return
 
 	src.add_fingerprint(user)
