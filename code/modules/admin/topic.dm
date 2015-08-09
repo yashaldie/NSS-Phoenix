@@ -735,7 +735,13 @@
 
 	//JOBBAN'S INNARDS
 	else if(href_list["jobban3"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
+		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN,0))
+			usr << "<span class='warning'>You do not have the appropriate permissions to add job bans!</span>"
+			return
+
+		if(check_rights(R_MOD,0) && !check_rights(R_ADMIN,0) && !config.mods_can_job_tempban) // If mod and tempban disabled
+			usr << "<span class='warning'>Mod jobbanning is disabled!</span>"
+			return
 
 		var/mob/M = locate(href_list["jobban4"])
 		if(!ismob(M))
@@ -810,12 +816,17 @@
 		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
 			switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 				if("Yes")
-					if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
+					if(!check_rights(R_MOD,0) && !check_rights(R_BAN, 0))
+						usr << "<span class='warning'> You Cannot issue temporary job-bans!</span>"
+						return
 					if(config.ban_legacy_system)
 						usr << "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban."
 						return
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
+						return
+					if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > config.mod_job_tempban_max)
+						usr << "<span class='warning'> Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!</span>"
 						return
 					var/reason = input(usr,"Reason?","Please State Reason","") as text|null
 					if(!reason)
@@ -930,7 +941,13 @@
 				DB_ban_unban(ckey(key), BANTYPE_JOB_PERMA, job)
 
 	else if(href_list["newban"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
+		if(!check_rights(R_MOD,0) && !check_rights(R_BAN, 0))
+			usr << "<span class='warning'>You do not have the appropriate permissions to add bans!</span>"
+			return
+
+		if(check_rights(R_MOD,0) && !check_rights(R_ADMIN, 0) && !config.mods_can_job_tempban) // If mod and tempban disabled
+			usr << "<span class='warning'>Mod jobbanning is disabled!</span>"
+			return
 
 		var/mob/M = locate(href_list["newban"])
 		if(!ismob(M)) return
@@ -941,6 +958,9 @@
 			if("Yes")
 				var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 				if(!mins)
+					return
+				if(check_rights(R_MOD, 0) && !check_rights(R_BAN, 0) && mins > config.mod_tempban_max)
+					usr << "<span class='warning'>Moderators can only job tempban up to [config.mod_tempban_max] minutes!</span>"
 					return
 				if(mins >= 525600) mins = 525599
 				var/reason = input(usr,"Reason?","reason","Griefer") as text|null
@@ -1646,7 +1666,7 @@
 		var/obj/item/fax = locate(href_list["AdminFaxView"])
 		if (istype(fax, /obj/item/weapon/paper))
 			var/obj/item/weapon/paper/P = fax
-			P.show_content(usr)
+			P.show_content(usr,1)
 		else if (istype(fax, /obj/item/weapon/photo))
 			var/obj/item/weapon/photo/H = fax
 			H.show(usr)
@@ -1955,18 +1975,7 @@
 									var/mob/M = O
 									M.real_name = obj_name
 
-		if (number == 1)
-			log_admin("[key_name(usr)] created a [english_list(paths)]")
-			for(var/path in paths)
-				if(ispath(path, /mob))
-					message_admins("[key_name_admin(usr)] created a [english_list(paths)]", 1)
-					break
-		else
-			log_admin("[key_name(usr)] created [number]ea [english_list(paths)]")
-			for(var/path in paths)
-				if(ispath(path, /mob))
-					message_admins("[key_name_admin(usr)] created [number]ea [english_list(paths)]", 1)
-					break
+		log_and_message_admins("created [number] [english_list(paths)]")
 		return
 
 	else if(href_list["secretsfun"])

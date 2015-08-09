@@ -100,8 +100,9 @@ var/list/admin_verbs_admin = list(
     /datum/admins/proc/cancelfuelexplosion
 	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
 	/client/proc/event_manager_panel,
-	/client/proc/empty_ai_core_toggle_latejoin
-
+	/client/proc/empty_ai_core_toggle_latejoin,
+	/client/proc/view_chemical_reaction_logs,
+	/client/proc/makePAI
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
