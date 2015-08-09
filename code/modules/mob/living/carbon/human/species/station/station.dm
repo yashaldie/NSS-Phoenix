@@ -48,14 +48,14 @@
 	reagent_tag = IS_UNATHI
 	base_color = "#066000"
 
-	heat_discomfort_level = 295
+	heat_discomfort_level = 420
 	heat_discomfort_strings = list(
 		"You feel soothingly warm.",
 		"You feel the heat sink into your bones.",
 		"You feel warm enough to take a nap."
 		)
 
-	cold_discomfort_level = 292
+	cold_discomfort_level = 280
 	cold_discomfort_strings = list(
 		"You feel chilly.",
 		"You feel sluggish and cold.",
@@ -96,13 +96,13 @@
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 
-	heat_discomfort_level = 292
+	heat_discomfort_level = 330
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
 		"You feel uncomfortably warm.",
 		"Your overheated skin itches."
 		)
-	cold_discomfort_level = 275
+	cold_discomfort_level = 200
 
 /datum/species/skrell
 	name = "Skrell"

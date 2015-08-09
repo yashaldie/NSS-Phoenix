@@ -57,7 +57,11 @@ var/list/mechtoys = list(
 	else
 		if(istype(A) && A.checkpass(PASSGLASS))
 			return prob(60)
+	if (istype(A, /obj/structure/ore_box))
+		return 1
 	if (istype(A, /obj/structure/closet))
+		return 1
+	if (istype(A, /obj/item))
 		return 1
 
 	var/obj/structure/bed/B = A
