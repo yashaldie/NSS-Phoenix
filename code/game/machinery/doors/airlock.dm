@@ -213,6 +213,7 @@
 	name = "Lift Door"
 	icon = 'icons/obj/doors/Doorsilver.dmi'
 	mineral = "silver"
+	safe = 0
 
 /obj/machinery/door/airlock/diamond
 	name = "Diamond Airlock"
