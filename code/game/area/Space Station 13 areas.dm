@@ -121,6 +121,7 @@ var/list/ghostteleportlocs = list()
 /area/admin
 	name = "Admin room"
 	icon_state = "start"
+	requires_power = 0
 
 
 
