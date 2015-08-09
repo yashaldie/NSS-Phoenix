@@ -7,9 +7,9 @@
 	//add wires
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
-		if (clipped)
+		/*if (clipped)
 			user << "<span class='notice'>The [src] are too badly mangled for wiring.</span>"
-			return
+		*/	return
 
 		if(wired)
 			user << "<span class='notice'>The [src] are already wired.</span>"
