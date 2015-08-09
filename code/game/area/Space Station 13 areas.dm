@@ -122,7 +122,7 @@ var/list/ghostteleportlocs = list()
 	name = "Admin room"
 	icon_state = "start"
 	requires_power = 0
-
+	luminosity = 1
 
 
 //These are shuttle areas, they must contain two areas in a subgroup if you want to move a shuttle from one
