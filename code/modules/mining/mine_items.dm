@@ -56,7 +56,7 @@
 	slot_flags = SLOT_BELT
 	force = 15.0
 	throwforce = 4.0
-	icon_state = "pickaxe"
+	icon_state = "handdrill"
 	item_state = "jackhammer"
 	w_class = 4.0
 	matter = list("metal" = 3750)
