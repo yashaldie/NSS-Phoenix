@@ -122,6 +122,7 @@ var/list/ghostteleportlocs = list()
 	name = "Admin room"
 	icon_state = "start"
 	requires_power = 0
+	luminosity = 1
 
 
 
