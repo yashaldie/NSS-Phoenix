@@ -151,7 +151,6 @@ var/list/forbidden_varedit_object_types = list(
 		if(!check_rights(R_DEBUG))	return
 
 	if(variable in GMlocked)
-		message_admins("\red [ckey] attempted to edit a GMLocked var!")
 		if(!check_rights(R_PERMISSIONS)) return
 
 	if(isnull(variable))
@@ -301,7 +300,6 @@ var/list/forbidden_varedit_object_types = list(
 			if(!check_rights(R_DEBUG))	return
 
 		if(param_var_name in GMlocked)
-			message_admins("\red [ckey] attempted to edit a GMLocked var!")
 			if(!check_rights(R_PERMISSIONS)) return
 
 		variable = param_var_name
@@ -363,7 +361,6 @@ var/list/forbidden_varedit_object_types = list(
 			if(!check_rights(R_DEBUG))	return
 
 		if(variable in GMlocked)
-			message_admins("\red [ckey] attempted to edit a GMLocked var!")
 			if(!check_rights(R_PERMISSIONS)) return
 
 	if(!autodetect_class)
