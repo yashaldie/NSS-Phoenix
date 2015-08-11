@@ -2564,6 +2564,11 @@
 	icon_state = "pizzamargheritaslice"
 	filling_color = "#BAA14C"
 	bitesize = 2
+	New()
+		..()
+		reagents.add_reagent("nutriment", 6)
+		reagents.add_reagent("protein", 1)
+		reagents.add_reagent("tomatojuice", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza
 	name = "Meatpizza"
@@ -2583,6 +2588,10 @@
 	icon_state = "meatpizzaslice"
 	filling_color = "#BAA14C"
 	bitesize = 2
+	New()
+		..()
+		reagents.add_reagent("protein", 8)
+		reagents.add_reagent("tomatojuice", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
 	name = "Mushroompizza"
@@ -2602,6 +2611,10 @@
 	icon_state = "mushroompizzaslice"
 	filling_color = "#BAA14C"
 	bitesize = 2
+	New()
+		..()
+		reagents.add_reagent("nutriment", 6)
+		reagents.add_reagent("protein", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 	name = "Vegetable pizza"
@@ -2623,6 +2636,12 @@
 	icon_state = "vegetablepizzaslice"
 	filling_color = "#BAA14C"
 	bitesize = 2
+	New()
+		..()
+		reagents.add_reagent("nutriment", 30)
+		reagents.add_reagent("protein", 5)
+		reagents.add_reagent("tomatojuice", 6)
+		reagents.add_reagent("imidazoline", 12)
 
 /obj/item/pizzabox
 	name = "pizza box"
