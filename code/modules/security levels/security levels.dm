@@ -39,7 +39,8 @@
 			M.access += access_research
 			M.access += access_engine_equip
 			M.access += access_mining
-
+			M.access += access_tcomsat
+			
 		if (M.assignment == "Security Commander")
 			M.access += access_research
 			M.access += access_engine_equip
@@ -82,11 +83,13 @@
 			M.access -= access_research
 			M.access -= access_engine_equip
 			M.access -= access_mining
-
+			M.access -= access_tcomsat
+			
 		if (M.assignment == "Security Commander")
 			M.access -= access_research
 			M.access -= access_engine_equip
 			M.access -= access_mining
+			M.access -= access_tcomsat
 
 /proc/closecodeblueaccess()
 	for(var/obj/machinery/door/blast/shutters/bluealert/D in world)
