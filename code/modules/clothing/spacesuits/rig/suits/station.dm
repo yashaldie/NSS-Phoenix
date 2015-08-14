@@ -44,8 +44,13 @@
 		/obj/item/rig_module/vision/meson
 		)
 
+	chest_type = /obj/item/clothing/suit/space/rig/ce
 	boot_type =  null
 	glove_type = null
+
+/obj/item/clothing/suit/space/rig/ce
+	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 
 /obj/item/weapon/rig/hazmat
 
@@ -81,7 +86,7 @@
 
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical,/obj/item/roller )
 
-	req_access = list(access_medical)
+	req_access = list(access_paramedic)
 
 	initial_modules = list(
 		/obj/item/rig_module/chem_dispenser/injector,

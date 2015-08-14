@@ -45,6 +45,17 @@
 
 	return
 
+/obj/item/weapon/reagent_containers/hypospray/combat
+	name = "combat hypospray"
+	desc = "A modified air-needle autoinjector, used by support operatives to quickly heal injuries in combat."
+	amount_per_transfer_from_this = 5
+	icon_state = "combat_hypo"
+	volume = 60
+
+///obj//item/weapon/reagent_containers/hypospray/combat/New()
+	//..()
+	//reagents.add_reagent("tricordrazine", 30)
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
 	name = "autoinjector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."

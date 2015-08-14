@@ -36,3 +36,16 @@
 	icon_state = "hardhat0_dblue"
 	item_state = "hardhat0_dblue"
 	item_color = "dblue"
+
+/obj/item/clothing/head/hardhat/atmos
+	icon_state = "hardhat0_atmos"
+	item_state = "hardhat0_atmos"
+	item_color = "atmos"
+	name = "atmospheric technician's firefighting helmet"
+	desc = "A firefighter's helmet, able to keep the user cool in any situation."
+	flags = STOPPRESSUREDAMAGE
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
+	heat_protection = HEAD
+	max_heat_protection_temperature = ATMOSUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	cold_protection = HEAD
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE

@@ -51,7 +51,7 @@ obj/item/weapon/gun/energy/retro
 	name = "laser cannon"
 	desc = "With the laser cannon, the lasing medium is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core. This incredible technology may help YOU achieve high excitation rates with small laser volumes!"
 	icon_state = "lasercannon"
-	item_state = null
+	item_state = "lasercannon"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	origin_tech = "combat=4;materials=3;powerstorage=3"
 	slot_flags = SLOT_BELT|SLOT_BACK

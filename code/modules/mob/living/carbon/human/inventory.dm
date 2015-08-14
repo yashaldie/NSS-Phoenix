@@ -478,7 +478,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				target_item = target.gloves
 			if("eyes")
 				target_part = "eyes"
-				target_item = target.glasses			
+				target_item = target.glasses
 			if("PDA")
 				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their PDA ([target.wear_pda]) removed by [source.name] ([source.ckey])</font>")
 				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) PDA ([target.wear_pda])</font>")
@@ -822,11 +822,15 @@ It can still be worn/put on as normal.
 	if(slot_to_process)
 		if(strip_item) //Stripping an item from the mob
 			var/obj/item/W = strip_item
-			target.remove_from_mob(W)
+			if(W.canremove)
+				target.remove_from_mob(W)
 			W.add_fingerprint(source)
 			if(slot_to_process == slot_l_store) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)
 				if(target.r_store)
-					target.u_equip(target.r_store) //At this stage l_store is already processed by the code above, we only need to process r_store.
+					W = target.r_store
+					if(W.canremove)
+						target.remove_from_mob(W) //At this stage l_store is already processed by the code above, we only need to process r_store.
+					W.add_fingerprint(source)
 		else
 			if(item && target.has_organ_for_slot(slot_to_process)) //Placing an item on the mob
 				if(item.mob_can_equip(target, slot_to_process, 0))
@@ -840,3 +844,70 @@ It can still be worn/put on as normal.
 		if(source.machine == target)
 			target.show_inv(source)
 	del(src)
+
+/mob/proc/get_item_by_slot(slot_id)
+	switch(slot_id)
+		if(slot_l_hand)
+			return l_hand
+		if(slot_r_hand)
+			return r_hand
+	return null
+
+/mob/living/carbon/get_item_by_slot(slot_id)
+	switch(slot_id)
+		if(slot_back)
+			return back
+		if(slot_wear_mask)
+			return wear_mask
+		if(slot_handcuffed)
+			return handcuffed
+		if(slot_legcuffed)
+			return legcuffed
+		if(slot_l_hand)
+			return l_hand
+		if(slot_r_hand)
+			return r_hand
+	return null
+
+// Return the item currently in the slot ID
+/mob/living/carbon/human/get_item_by_slot(slot_id)
+	switch(slot_id)
+		if(slot_back)
+			return back
+		if(slot_wear_mask)
+			return wear_mask
+		if(slot_handcuffed)
+			return handcuffed
+		if(slot_legcuffed)
+			return legcuffed
+		if(slot_l_hand)
+			return l_hand
+		if(slot_r_hand)
+			return r_hand
+		if(slot_belt)
+			return belt
+		if(slot_wear_id)
+			return wear_id
+		if(slot_l_ear)
+			return l_ear
+		if(slot_r_ear)
+			return r_ear
+		if(slot_glasses)
+			return glasses
+		if(slot_gloves)
+			return gloves
+		if(slot_head)
+			return head
+		if(slot_shoes)
+			return shoes
+		if(slot_wear_suit)
+			return wear_suit
+		if(slot_w_uniform)
+			return w_uniform
+		if(slot_l_store)
+			return l_store
+		if(slot_r_store)
+			return r_store
+		if(slot_s_store)
+			return s_store
+	return null

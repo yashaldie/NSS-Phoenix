@@ -1128,6 +1128,14 @@ datum/design/item/medical/robot_scanner
 	materials = list("$metal" = 500, "$glass" = 200)
 	build_path = /obj/item/device/robotanalyzer
 
+/datum/design/item/medical/defib
+	desc = "A device that delivers powerful shocks to detachable paddles that resuscitate incapacitated patients."
+	id = "defib"
+	req_tech = list("materials" = 7, "biotech" = 5, "powerstorage" = 5)
+	materials = list("$metal" = 5000, "$glass" = 2000, "$silver" = 1000)
+	reliability = 76
+	build_path = /obj/item/weapon/defibrillator
+
 datum/design/item/medical/mass_spectrometer
 	desc = "A device for analyzing chemicals in blood."
 	id = "mass_spectrometer"
@@ -1156,6 +1164,15 @@ datum/design/item/medical/adv_reagent_scanner
 	reliability_base = 74
 	build_path = /obj/item/device/reagent_scanner/adv
 
+/*
+/datum/design/item/medical/sensor_device
+	desc = "A device for tracking crew members on the station."
+	id = "sensor_device"
+	req_tech = list("biotech" = 4, "magnets" = 3, "materials" = 3)
+	materials = list("$metal" = 30, "$glass" = 20)
+	reliability_base = 76
+	build_path = /obj/item/device/sensor_device
+*/
 datum/design/item/medical/mmi
 	id = "mmi"
 	req_tech = list("programming" = 2, "biotech" = 3)
@@ -1301,6 +1318,13 @@ datum/design/item/weapon/stunrevolver
 	req_tech = list("combat" = 3, "materials" = 3, "powerstorage" = 2)
 	materials = list("$metal" = 4000)
 	build_path = /obj/item/weapon/gun/energy/stunrevolver
+	locked = 1
+
+/datum/design/tele_shield
+	id = "tele_shield"
+	req_tech = list("combat" = 4, "materials" = 3, "engineering" = 3)
+	materials = list("$metal" = 4000, "$glass" = 5000, "$silver" = 300)
+	build_path = /obj/item/weapon/shield/riot/tele
 	locked = 1
 
 datum/design/item/weapon/lasercannon
@@ -1483,6 +1507,22 @@ datum/design/item/hud/security
 	req_tech = list("magnets" = 3, "combat" = 2)
 	build_path = /obj/item/clothing/glasses/hud/security
 	locked = 1
+
+/datum/design/item/hud/health_hud_night
+	name = "Night Vision Health Scanner HUD"
+	id = "health_hud_night"
+	req_tech = list("biotech" = 4, "magnets" = 5)
+	materials = list("$metal" = 200, "$glass" = 200, "$uranium" = 1000, "$silver" = 250)
+	build_path = /obj/item/clothing/glasses/hud/health/night
+
+/datum/design/item/hud/security_hud_night
+	name = "Night Vision Security HUD"
+	id = "security_hud_night"
+	req_tech = list("magnets" = 5, "combat" = 4)
+	materials = list("$metal" = 200, "$glass" = 200, "$uranium" = 1000, "$gold" = 350)
+	build_path = /obj/item/clothing/glasses/hud/security/night
+	locked = 1
+
 
 /////////////////////////////////////////
 ////////////////PDA Stuff////////////////

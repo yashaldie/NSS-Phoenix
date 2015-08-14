@@ -29,6 +29,7 @@
 	var/co2_alert = 0
 	var/fire_alert = 0
 	var/pressure_alert = 0
+	var/heartbeat = 0
 	var/temperature_alert = 0
 	var/in_stasis = 0
 
@@ -107,6 +108,8 @@
 		handle_medical_side_effects()
 
 		handle_gender_updates()
+
+		handle_heartattack()
 
 	handle_stasis_bag()
 
@@ -592,7 +595,7 @@
 
 				// Enough to make us sleep as well
 				if(SA_pp > SA_sleep_min)
-					sleeping = min(sleeping+2, 10)
+					Sleeping(5)
 
 			// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 			else if(SA_pp > 0.15)
@@ -1283,7 +1286,7 @@
 				damageoverlay.overlays += I
 
 		if( stat == DEAD )
-			sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+			sight = SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 			see_in_dark = 8
 			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 			if(healths)		healths.icon_state = "health7"	//DEAD healthmeter
@@ -1305,7 +1308,7 @@
 							b.zoom()
 					*/
 		else
-			sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+			sight = species.vision_flags
 			see_in_dark = species.darksight
 			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
 
@@ -1322,29 +1325,23 @@
 				see_in_dark = 8
 				if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
-			if(seer==1)
+			if(seer)
 				var/obj/effect/rune/R = locate() in loc
 				if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
 					see_invisible = SEE_INVISIBLE_OBSERVER
 				else
-					see_invisible = SEE_INVISIBLE_LIVING
 					seer = 0
 
-			var/tmp/glasses_processed = 0
+			var/equipped_glasses = glasses
 			var/obj/item/weapon/rig/rig = back
 			if(istype(rig) && rig.visor)
 				if(!rig.helmet || (head && rig.helmet == head))
 					if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
-						glasses_processed = 1
-						process_glasses(rig.visor.vision.glasses)
+						equipped_glasses = rig.visor.vision.glasses
+			if(equipped_glasses)
+				process_glasses(equipped_glasses)
 
-			if(glasses && !glasses_processed)
-				glasses_processed = 1
-				process_glasses(glasses)
-
-			if(!glasses_processed && (species.vision_flags > 0))
-				sight |= species.vision_flags
-			if(!seer && !glasses_processed)
+			if(!seer)
 				see_invisible = SEE_INVISIBLE_LIVING
 
 			if(healths)
@@ -1470,7 +1467,7 @@
 				if(viewflags < 0)
 					reset_view(null, 0)
 				else if(viewflags)
-					sight |= viewflags
+					sight = viewflags //when viewing from a machine, use only the sight flags that the machine provides
 			else
 				var/isRemoteObserve = 0
 				if((mRemote in mutations) && remoteview_target)
@@ -1609,6 +1606,9 @@
 		if(stat == DEAD)
 			return PULSE_NONE	//that's it, you're dead, nothing can influence your pulse
 
+		if(heart_attack)
+			return PULSE_NONE
+
 		var/temp = PULSE_NORM
 
 		if(round(vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD)	//how much blood do we have
@@ -1632,7 +1632,6 @@
 					temp = PULSE_NONE
 
 		return temp
-
 /*
 	Called by life(), instead of having the individual hud items update icons each tick and check for status changes
 	we only set those statuses and icons upon changes.  Then those HUD items will simply add those pre-made images.
@@ -1807,6 +1806,16 @@
 	if(..())
 		speech_problem_flag = 1
 	return stunned
+
+/mob/living/carbon/human/proc/handle_heartattack()
+	if(!heart_attack)
+		return
+	else
+		losebreath += 5
+		adjustOxyLoss(5)
+		adjustBrainLoss(rand(4,10))
+		Paralyse(2)
+	return
 
 /mob/living/carbon/human/handle_stuttering()
 	if(..())

@@ -46,6 +46,26 @@
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
 	user << "<span class='warning'>[src.name] has three settings, and they are all DESTROY.</span>"
 
+/obj/item/weapon/gun/energy/pulse_rifle/carbine
+	name = "pulse carbine"
+	desc = "A compact variant of the pulse rifle with less firepower but easier storage."
+	w_class = 3
+	slot_flags = SLOT_BELT
+	icon_state = "pulse_carbine"
+	item_state = "pulse"
+	cell_type = /obj/item/weapon/cell/super
+	projectile_type = /obj/item/projectile/beam/pulsec
+
+
+/obj/item/weapon/gun/energy/pulse_rifle/pistol
+	name = "pulse pistol"
+	desc = "A pulse rifle in an easily concealed handgun package with low capacity."
+	w_class = 2
+	slot_flags = SLOT_BELT
+	icon_state = "pulse_pistol"
+	item_state = "gun"
+	cell_type = /obj/item/weapon/cell/super
+	projectile_type = /obj/item/projectile/beam/pulsep
 
 //WHY?
 /obj/item/weapon/gun/energy/pulse_rifle/M1911

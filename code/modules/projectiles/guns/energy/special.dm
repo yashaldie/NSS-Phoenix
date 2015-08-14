@@ -15,13 +15,6 @@
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
 	..(max(severity, 2)) //so it doesn't EMP itself, I guess
 
-/obj/item/weapon/gun/energy/ionrifle/update_icon()
-	..()
-	if(power_supply.charge < charge_cost)
-		item_state = "ionrifle-empty"
-	else
-		item_state = initial(item_state)
-
 /obj/item/weapon/gun/energy/decloner
 	name = "biological demolecularisor"
 	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."

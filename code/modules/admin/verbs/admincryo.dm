@@ -61,14 +61,14 @@
 		if("Cargo Technician")
 			return list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
 		if("Shaft Miner")
-			return list(access_mining, access_mint, access_mining_station)
+			return list(access_mining, access_mining_station)
 		if("Quartermaster")
-			return list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
+			return list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
 		if("Chief Engineer")
 			return list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels,
 			            access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
 			            access_heads, access_ai_upload, access_construction, access_robotics,
-			            access_mint, access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_sec_doors)
+			            access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_sec_doors)
 		if("Research Director")
 			return list(access_rd, access_heads, access_tox, access_genetics,
 			            access_tox_storage, access_teleporter,

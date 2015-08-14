@@ -110,6 +110,16 @@ var/list/beam_master = list()
 		target.ex_act(2)
 	..()
 
+/obj/item/projectile/beam/pulsec
+	name = "pulse"
+	icon_state = "u_laser"
+	damage = 40
+
+/obj/item/projectile/beam/pulsep
+	name = "pulse"
+	icon_state = "bluelaser"
+	damage = 35
+
 /obj/item/projectile/beam/emitter
 	name = "emitter beam"
 	icon_state = "emitter"

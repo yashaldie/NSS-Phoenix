@@ -13,6 +13,7 @@ em						{font-style: normal;font-weight: bold;}
 
 .prefix					{font-weight: bold;}
 .log_message			{color: #386AFF;	font-weight: bold;}
+.debug_message			{color: #DBA901;	font-weight: bold;}
 
 /* OOC */
 .ooc					{font-weight: bold;}

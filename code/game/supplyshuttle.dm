@@ -57,6 +57,12 @@ var/list/mechtoys = list(
 	else
 		if(istype(A) && A.checkpass(PASSGLASS))
 			return prob(60)
+	if (istype(A, /obj/structure/ore_box))
+		return 1
+	if (istype(A, /obj/structure/closet))
+		return 1
+	if (istype(A, /obj/item))
+		return 1
 
 	var/obj/structure/bed/B = A
 	if (istype(A, /obj/structure/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
@@ -106,6 +112,7 @@ var/list/mechtoys = list(
 	name = "airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps."
 
+
 	New() //set the turf below the flaps to block air
 		var/turf/T = get_turf(loc)
 		if(T)
@@ -118,7 +125,6 @@ var/list/mechtoys = list(
 			if(istype(T, /turf/simulated/floor))
 				T.blocks_air = 0
 		..()
-
 /*
 /obj/effect/marker/supplymarker
 	icon_state = "X"

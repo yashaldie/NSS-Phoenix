@@ -114,7 +114,6 @@
 	//handle_typing_indicator() //You said the typing indicator would be fine. The test determined that was a lie.
 	return
 
-
 /mob/proc/restrained()
 	return
 
@@ -1236,3 +1235,12 @@ mob/proc/yank_out_object()
 /mob/verb/westfaceperm()
 	set hidden = 1
 	set_face_dir(WEST)
+
+/mob/proc/get_ghost(even_if_they_cant_reenter = 0)
+	if(mind)
+		for(var/mob/dead/observer/G in dead_mob_list)
+			if(G.mind == mind)
+				if(G.can_reenter_corpse || even_if_they_cant_reenter)
+					return G
+				break
+

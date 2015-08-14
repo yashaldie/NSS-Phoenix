@@ -15,8 +15,6 @@
 	active_state = "power"
 	var/currentfloor = null
 	var/floor = null
-	/var/global/liftposition = 1
-	/var/global/ismoving = 1
 
 /datum/file/program/lift/interact()
 	currentfloor = computer.z
@@ -30,17 +28,17 @@
 	if(!interactable())
 		return
 	var/dat// = topic_link(src,"close","Close")
-	if (ismoving == 1)
+	if (liftismoving == 1)
 		dat = "<center><h4>Lift currently moving..</b<</h4></center>"
 	else
 		dat = "<center><h4>You are currently on:<b>[floor]</b<</h4></center>"
 
 	dat += "<br><center><h3>Control Panel</h3></center>"
 	if (istype(computer.loc.loc, /area/lift))
-		if(ismoving == 0)
+		if(liftismoving == 0)
 			dat += "<center><b>[topic_link(src,"upwards","Go Upwards")] | [topic_link(src,"downwards","Go Downwards")] | [topic_link(src,"doors","Force Open Door")]"
 	else
-		if(ismoving == 0)
+		if(liftismoving == 0)
 			dat += "<center><b>[topic_link(src,"call","Call Lift")]"
 	dat += "</b></center>"
 
@@ -50,9 +48,9 @@
 /datum/file/program/lift/Topic(href, list/href_list)
 	if(!interactable() || ..(href,href_list))
 		return
-	if (ismoving == 0)
+	if (liftismoving == 0)
 		if ("upwards" in href_list)
-			ismoving = 1
+			liftismoving = 1
 			var/area/start_location = null
 			var/area/end_location = null
 			if (computer.z == 7)
@@ -105,10 +103,10 @@
 						shake_camera(M, 4, 1) // buckled, not a lot of shaking
 			computer.updateUsrDialog()
 			interact()
-			ismoving = 0
+			liftismoving = 0
 
 		else if ("downwards" in href_list)
-			ismoving = 1
+			liftismoving = 1
 			var/area/start_location = null
 			var/area/end_location = null
 			if (computer.z == 7)
@@ -161,7 +159,7 @@
 			computer.updateUsrDialog()
 			spawn(20)
 			interact()
-			ismoving = 0
+			liftismoving = 0
 
 		else if ("call" in href_list)
 			var/area/start_location = null
@@ -231,7 +229,7 @@
 			computer.updateUsrDialog()
 			spawn(20)
 			interact()
-			ismoving = 0
+			liftismoving = 0
 
 
 	if ("doors" in href_list) //Doors!

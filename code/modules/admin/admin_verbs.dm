@@ -100,8 +100,9 @@ var/list/admin_verbs_admin = list(
     /datum/admins/proc/cancelfuelexplosion
 	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
 	/client/proc/event_manager_panel,
-	/client/proc/empty_ai_core_toggle_latejoin
-
+	/client/proc/empty_ai_core_toggle_latejoin,
+	/client/proc/view_chemical_reaction_logs,
+	/client/proc/makePAI
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -460,6 +461,8 @@ var/list/admin_verbs_headadmin = list(
 	/client/proc/toggle_antagHUD_restrictions,
 	/client/proc/edit_vip_permissions,
 	/client/proc/everyone_random,
+	/client/proc/global_erp,
+	/client/proc/erp,
 	/client/proc/cinematic,
 	//client/proc/set_ooc,
 	/client/proc/artillery,
@@ -533,7 +536,9 @@ var/list/admin_verbs_auditor = list(
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
-	/client/proc/getserverlog
+	/client/proc/getserverlog,
+	/datum/admins/proc/view_txt_log,	/*shows the server log (diary) for today*/
+	/datum/admins/proc/view_atk_log
 )
 /*
 verbs += admin_verbs_dev
@@ -965,6 +970,31 @@ var/list/admin_verbs_hideable = list(
 	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/global_erp()
+	set category = "Fun"
+	set name = "ERP Detected Global"
+	set desc = "Alerts everyone that ERP has been detected, and that spiders /will/ be deployed."
+
+	for (var/mob/T as mob in mob_list)
+		T << "<br><center><span class='notice'><b><font size=4>ERP DETECTED.<br> Deploying spiders.</font></b><br></span></center><br>"
+		T << 'sound/effects/erpdetected.wav'
+
+	log_admin("[key_name(usr)] told everyone that ERP has been detected, and spiders will be on their way.")
+	message_admins("\blue [key_name_admin(usr)] told everyone that ERP has been detected, and spiders will be on their way.", 1)
+
+/client/proc/erp(mob/T as mob in mob_list)
+	set category = "Fun"
+	set name = "ERP Detected"
+	set desc = "Alerts someone that ERP has been detected, and that spiders /will/ be deployed."
+
+	T << "<span class='danger'><b><font size=3>ERP DETECTED.</font></b></span>"
+	T << "<span class='danger'>Deploying spiders.</span>"
+	T << 'sound/effects/erpdetected.wav'
+
+
+	log_admin("[key_name(usr)] told [key_name(T)] that ERP has been detected, and spiders will be on their way.")
+	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] that ERP has been detected, and spiders will be on their way.", 1)
+
 /client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
 	set category = "Fun"
 	set name = "Give Spell"
@@ -1051,6 +1081,9 @@ var/list/admin_verbs_hideable = list(
 	set category = "Special Verbs"
 	if(src.mob)
 		togglebuildmode(src.mob)
+		message_admins("\blue [key_name_admin(usr)] has toggled buildmode for themselves.")
+		log_admin("[key_name(usr)] has toggled buildmode for themselves.")
+		log_admin_single("[key_name(usr)] has toggled buildmode for themselves.")
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/object_talk(var/msg as text) // -- TLE

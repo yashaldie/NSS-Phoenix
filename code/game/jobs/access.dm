@@ -50,8 +50,6 @@
 /var/const/access_mining = 48
 /var/const/access_mining_office = 49 //not in use
 /var/const/access_mailsorting = 50
-/var/const/access_mint = 51
-/var/const/access_mint_vault = 52
 /var/const/access_heads_vault = 53
 /var/const/access_mining_station = 54
 /var/const/access_xenobiology = 55
@@ -66,6 +64,8 @@
 /var/const/access_psychiatrist = 64 // Psychiatrist's office
 /var/const/access_xenoarch = 65
 /var/const/access_deptguard = 66 //Security Guard
+/var/const/access_paramedic = 67
+/var/const/access_fax = 68
 
 	//BEGIN CENTCOM ACCESS
 	/*Should leave plenty of room if we need to add more access levels.
@@ -373,10 +373,6 @@ var/const/access_blueshield = 153
 			return "Mining Office"
 		if(access_mailsorting)
 			return "Cargo Office"
-		if(access_mint)
-			return "Mint"
-		if(access_mint_vault)
-			return "Mint Vault"
 		if(access_heads_vault)
 			return "Main Vault"
 		if(access_mining_station)

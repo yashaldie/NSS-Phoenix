@@ -79,7 +79,7 @@
 		return 0
 
 
-	if(health < 1)
+	if(health <= 0)
 		death()
 		return
 
@@ -89,6 +89,7 @@
 	handle_stunned()
 	handle_weakened()
 	handle_paralysed()
+	update_canmove()
 
 	//Movement
 	if(!client && !stop_automated_movement && wander && !anchored)

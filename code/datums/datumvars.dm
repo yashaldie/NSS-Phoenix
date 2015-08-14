@@ -12,6 +12,9 @@ client
 			usr << "\red You need to be an administrator to access this."
 			return
 
+		if(!check_rights(R_MENTOR|R_AUDITOR|R_DEV)) // Devs may VV again. It honestly is helpful for debugging.
+			message_admins("\blue [key_name_admin(usr)] tried to use view variables without access.", 1)
+			return
 
 		var/title = ""
 		var/body = ""
@@ -549,6 +552,10 @@ client
 			usr << "This can only be used on instances of type /mob"
 			return
 
+		message_admins("\blue [key_name_admin(usr)] has toggled buildmode for [key_name_admin(M)]")
+		log_admin("[key_name(usr)] has toggled buildmode for [key_name(M)]")
+		log_admin_single("[key_name(usr)] has toggled buildmode for [key_name(M)]")
+
 		togglebuildmode(M)
 		href_list["datumrefresh"] = href_list["build_mode"]
 
@@ -616,7 +623,7 @@ client
 					return
 				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
 				log_admin_single("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-				message_admins("\blue [key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
+				message_admins("\blue [key_name_admin(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
 			if("Type and subtypes")
 				var/i = 0
 				for(var/obj/Obj in world)
@@ -895,6 +902,10 @@ client
 			return
 		else
 			H.verbs += verb
+
+			log_admin("[key_name(usr)] has added [verb] to [key_name(H)]")
+			log_admin_single("[key_name(usr)] has added [verb] to [key_name(H)]")
+			message_admins("\blue [key_name(usr)] has added [verb] to [key_name(H)]")
 
 	else if(href_list["remverb"])
 		if(!check_rights(R_DEBUG))      return
